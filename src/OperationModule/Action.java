@@ -1,6 +1,7 @@
 package OperationModule;
 
 import ExceptionModule.InsufficientMoneyException;
+import ExceptionModule.NoThatSWrongException;
 
 public class Action {
     private Ticket ticket;
@@ -13,8 +14,8 @@ public class Action {
         information = new Information();
     }
 
-    public Object createTicket(Ticket t){
-        ticket = t;
+    public Object createTicket(Object[] info, Integer[] id, String address) throws NoThatSWrongException{
+        ticket = new Ticket(info, id, address);
         return ticket;
     }
     

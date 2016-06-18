@@ -47,7 +47,7 @@ class Card {    //OK
         funds = funds - value;
     }
     
-    public String toString() {
+    public String print() {
         StringBuffer s = null;
         
         s.append("Número Serial do Cartão: ");
@@ -59,6 +59,16 @@ class Card {    //OK
         s.append("Saldo: ");
         s.append(funds);
         
+        return s.toString();
+    }
+    
+    public String toString(){
+        StringBuffer s = new StringBuffer();
+        
+        for(int i: serialNum)
+           s.append(i);
+        s.append(";");
+        s.append(funds).append(";");
         return s.toString();
     }
     

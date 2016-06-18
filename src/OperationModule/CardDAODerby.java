@@ -3,37 +3,31 @@ package OperationModule;
 import ExceptionModule.NegativeCardFundsException;
 import ExceptionModule.NotEnoughCardFundsException;
 import ExceptionModule.SerialNumberLengthIsNotEnough;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 class CardDAODerby implements CardDAO { //OK
-
-    Card card;
-
+    private File keepFile;
     public CardDAODerby() {
+        keepFile = new File("cards.txt");
     }
 
-    public String setCard(int[] serialNum, int funds) throws SerialNumberLengthIsNotEnough, NegativeCardFundsException {
-        card = new Card(serialNum, funds);
-        return card.toString();
-    }
+    @Override
+    public void addCard(Card c, int fee) throws SerialNumberLengthIsNotEnough {
 
-    public int getFunds() {
-        return card.getFunds();
-    }
+        try{
+        BufferedWriter writer = new BufferedWriter(new FileWriter(keepFile));
 
-    public int[] getSerialNum() {
-        return card.getSerialNum();
-    }
+        writer.write(c.toString());
+        writer.write(fee+";");
+        writer.write("\n");
 
-    public Boolean setSerialNum(int[] serialNum) {
-        return card.setSerialNum(serialNum);
-    }
+        writer.close();
+        }catch(IOException e){
 
-    public Boolean addFunds(int value) {
-        return card.addFunds(value);
-    }
-
-    public void subFunds(int value) throws NotEnoughCardFundsException {
-        card.subFunds(value);
+        }
     }
 
 }

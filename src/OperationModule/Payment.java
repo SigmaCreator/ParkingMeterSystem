@@ -6,12 +6,12 @@ import ResourceModule.Money;
 import ExceptionModule.InsufficientMoneyException;
 
 class Payment { //OK
-    BankDAODerby bankController;
-    CardDAODerby cardController;
+    Bank bankController;
+    Card cardController;
     
     public Payment(){ 
-        bankController = new BankDAODerby(); 
-        cardController = new CardDAODerby();
+        bankController = new Bank(); 
+        cardController = null;
     }
     
     public Object[] defineAction(Object[] info, int fee, int change) throws Exception {
@@ -25,10 +25,13 @@ class Payment { //OK
                      break;
             
             case 2:  result = new Object[2];
-                     result[0] = "Informações do Cartão: \n" + cardController.setCard( (int[]) info[2] , (int) info[3] );
-                     result[1] = "Valor pago: " + fee + "\n" + "Saldo do cartão após pagamento: " + cardController.getFunds();
+                     cardController = new Card((int[]) info[2] , (int) info[3]);
+                     result[0] = "Informações do Cartão: \n" + cardController.getSerialNum() + "; "+cardController.getFunds()+";";
                      cardController.subFunds(fee);
                      bankController.deposit(fee);
+                     result[1] = "Valor pago: " + fee + "\n" + "Saldo do cartão após pagamento: " + cardController.getFunds();
+                     
+                     
                      break;
                 
             case 3:  result = new Object[1];

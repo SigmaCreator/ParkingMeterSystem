@@ -30,7 +30,7 @@ class InfoDAODerby implements InfoDAO{ //OK
             String line = br.readLine();
             while(line!=null){
                 String aux[] = line.split(":");
-                if(aux[0].equals(label)) return aux[1];
+                if(aux[0].equals(label)) return aux;
             }
             br.close();
         } catch (IOException ex) {

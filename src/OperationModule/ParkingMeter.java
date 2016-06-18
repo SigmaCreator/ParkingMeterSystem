@@ -62,7 +62,7 @@ public class ParkingMeter {
         Object result = new Object();
         try{
         switch(act){
-            case 1: result = action.createTicket(new Ticket(info, id, address)); //OK
+            case 1: result = action.createTicket(info, id, address); //OK
                     break;
                 
             case 2: int fee = action.getFee(info[1]);

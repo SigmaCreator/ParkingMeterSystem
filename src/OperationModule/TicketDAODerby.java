@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class TicketDAODerby implements TicketDAO { //OK!
-    public File keepFile;
+    private File keepFile;
     
     public TicketDAODerby (){
         keepFile = new File("tickets.txt");
@@ -34,6 +34,4 @@ public class TicketDAODerby implements TicketDAO { //OK!
     public Ticket[] getAll(String label) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-
 }
