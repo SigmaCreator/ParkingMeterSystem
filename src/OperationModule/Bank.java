@@ -101,5 +101,28 @@ class Bank { // OK
         return total;
     } // Retorna todo dinheiro arrecadado
     
+    public String print(){
+        StringBuilder s = new StringBuilder();
+        
+        for(Money m : funds) {
+            s.append("Quantidade de moedas de ");
+            s.append(m.getCoin());
+            s.append(" : ");
+            s.append(m.getQuantity());
+            s.append("\n");
+        }
+        
+            s.append("Total arrecadado por pagamento em cartão: ");
+            s.append(cardFunds);
+            s.append("\n");
+            s.append("Total arrecadado: ");
+            s.append((int) allMoney());
+            s.append("\n");
+        
+        return s.toString();
+    }
+    
+    // public String toString() {}
+    
     
 }

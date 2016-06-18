@@ -1,7 +1,5 @@
 package OperationModule;
 
-import ExceptionModule.NegativeCardFundsException;
-import ExceptionModule.NotEnoughCardFundsException;
 import ExceptionModule.SerialNumberLengthIsNotEnough;
 import java.io.BufferedWriter;
 import java.io.File;

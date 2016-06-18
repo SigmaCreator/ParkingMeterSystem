@@ -10,16 +10,13 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-/**
- *
- * @author Pedro
- */
 public class PaymentDAODerby implements PaymentDAO{
     private File keepFile;
     
     public PaymentDAODerby(){
         keepFile = new File("payments.txt");
     }
+    
     @Override
     public void addPayment(Object info[], double fee, double change) {
         try{

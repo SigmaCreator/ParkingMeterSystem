@@ -5,8 +5,9 @@ import ExceptionModule.SerialNumberLengthIsNotEnough;
 import ExceptionModule.NotEnoughCardFundsException;
 
 class Card {    //OK
-    int[] serialNum;
-    int funds;
+    private int[] serialNum;
+    private int funds;
+    private CardDAO cardDAO;
 
     public Card(int[] serialNum, int funds) throws SerialNumberLengthIsNotEnough, NegativeCardFundsException {
         if( serialNum.length < 128 )
@@ -17,6 +18,7 @@ class Card {    //OK
         
         this.serialNum = serialNum;
         this.funds = funds;
+        cardDAO = new CardDAODerby();
     }
 
     public int getFunds() {
@@ -70,6 +72,10 @@ class Card {    //OK
         s.append(";");
         s.append(funds).append(";");
         return s.toString();
+    }
+
+    public void addCard(int fee) throws SerialNumberLengthIsNotEnough {
+        cardDAO.addCard(this, fee);
     }
     
 }

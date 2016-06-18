@@ -1,3 +1,4 @@
+
 package ExceptionModule;
 
 public class NonExistentActionException extends Exception {

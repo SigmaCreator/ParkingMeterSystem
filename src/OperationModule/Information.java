@@ -5,12 +5,13 @@ import ResourceModule.Time;
 class Information { //OK!
     
     private static Information instance;
+    private InfoDAO infoDAO;
     
-    private Time startHour; //SH
-    private Time finishHour; //FH
-    private Time minTime;   //MinT
-    private Time maxTime;    //MaxT
-    private Time increment;  //IC
+    private Time startHour;     //SH
+    private Time finishHour;    //FH
+    private Time minTime;       //MinT
+    private Time maxTime;       //MaxT
+    private Time increment;     //IC
     private int  incrementFee;  //ICF
     
     protected Information(){
@@ -20,6 +21,7 @@ class Information { //OK!
         maxTime      = null;  
         increment    = null;
         incrementFee = 0;
+        infoDAO      = new InfoDAODerby();
     }
     
     public static Information getInstance(){
@@ -27,44 +29,6 @@ class Information { //OK!
             instance = new Information();
         
         return instance;
-    }
-
-    public Object defineAction(Object[] info) {
-        if( (int) info[0] == 1 ){ //getter
-            switch( (int) info[1] ){
-                case 0: return getStartHour();
-                case 1: return getFinishHour();
-                case 2: return getMinTime();
-                case 3: return getMaxTime();
-                case 4: return getIncrement();
-                case 5: return getIncrementFee();
-                default: return null;
-            }
-        }
-        else if( (int) info[0] == 2){ //setter
-            switch( (int) info[1] ){
-                case 0: setStartHour(info[2]); 
-                        return true;
-                        
-                case 1: setFinishHour(info[2]);
-                        return true;
-                        
-                case 2: setMinTime(info[2]);
-                        return true;
-                        
-                case 3: setMaxTime(info[2]);
-                        return true;
-                        
-                case 4: setIncrement(info[2]);
-                        return true;
-                        
-                case 5: setIncrementFee((int)info[2]);
-                
-                default: return false;
-            }
-        }
-        
-        return null;
     }
     
     public Time getStartHour() {
@@ -75,6 +39,7 @@ class Information { //OK!
         if(startHour == null)
             throw new NullPointerException("Hora de Início está nula");
         this.startHour = (Time) startHour;
+        infoDAO.set("SH", this.startHour.toString());
     }
 
     public Time getFinishHour() {
@@ -85,6 +50,7 @@ class Information { //OK!
         if(finishHour == null)
             throw new NullPointerException("Hora de Término está nula");
         this.finishHour = (Time) finishHour;
+        infoDAO.set("FH", this.finishHour.toString());
     }
 
     public Time getMinTime() {
@@ -95,6 +61,7 @@ class Information { //OK!
         if(minTime == null)
             throw new NullPointerException("Tempo mínimo está nulo");
         this.minTime = (Time) minTime;
+        infoDAO.set("MinT", this.minTime.toString());
     }
 
     public Time getMaxTime() {
@@ -105,6 +72,7 @@ class Information { //OK!
         if(maxTime == null)
             throw new NullPointerException("Tempo máximo está nulo");
         this.maxTime = (Time) maxTime;
+        infoDAO.set("MaxT", this.maxTime.toString());
     }
 
     public Time getIncrement() {
@@ -115,6 +83,7 @@ class Information { //OK!
         if(increment == null)
             throw new NullPointerException("Incremento está nulo");
         this.increment = (Time) increment;
+        infoDAO.set("IC", this.increment.toString());
     }
     
     public int getIncrementFee() {
@@ -125,6 +94,7 @@ class Information { //OK!
         if(incrementFee == 0 || incrementFee < 0)
             throw new NullPointerException("Taxa de incremento está nula ou é menor que zero");
         this.incrementFee = incrementFee;
+        infoDAO.set("ICF", this.incrementFee);
     }
-
+    
 }

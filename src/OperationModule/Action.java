@@ -14,9 +14,9 @@ public class Action {
         information = new Information();
     }
 
-    public Object createTicket(Object[] info, Integer[] id, String address) throws NoThatSWrongException{
-        ticket = new Ticket(info, id, address);
-        return ticket;
+    public Object createTicket(Object time, Object serialNumber, Integer[] id, String address) throws NoThatSWrongException{
+        ticket = new Ticket(time, (int[]) serialNumber, id, address);
+        return ticket.print();
     }
     
     public Payment getPayment() {

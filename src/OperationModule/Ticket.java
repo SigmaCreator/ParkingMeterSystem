@@ -13,20 +13,15 @@ public class Ticket { //OK!
     Time expiration;
     Calendar calendar;
     
-    public Ticket(Object[] info, Integer[] id, String address) throws NoThatSWrongException{
+    public Ticket(Object totalIncrement, int[] serialNumber, Integer[] id, String address) throws NoThatSWrongException{
         calendar = Calendar.getInstance();
         this.id = id;
         this.address = address;
-        serialNum = (int[]) info[0];
+        serialNum = serialNumber;
         emission = new Time(calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE));
         expiration = new Time(0,0);
         expiration.add(emission);
-        expiration.add((Time) info[1]);
-    }
-    
-    public String create(Object[] info, Integer[] id, String address) throws NoThatSWrongException{
-            Ticket ticket = new Ticket(info,id,address);
-            return ticket.toString();
+        expiration.add((Time) totalIncrement);
     }
     
     public String print() {

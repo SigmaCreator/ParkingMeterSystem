@@ -4,45 +4,36 @@ import ResourceModule.Time;
 import ResourceModule.Money;
 
 import ExceptionModule.InsufficientMoneyException;
+import ExceptionModule.NonExistentActionException;
 
 class Payment { //OK
-    Bank bankController;
-    Card cardController;
+    Bank bank;
+    Card card;
     
     public Payment(){ 
-        bankController = new Bank(); 
-        cardController = null;
+        bank = new Bank(); 
+        card = null;
     }
     
-    public Object[] defineAction(Object[] info, int fee, int change) throws Exception {
+    public Object defineAction(Object[] info, int fee, int change) throws Exception {
         // 1 - pay with money
         // 2 - pay with card 
         // 3 - check funds
-        Object[] result;
+        
+        Object result = new Object();
         
         switch((int) info[0]){
-            case 1:  result = bankController.deposit( (Object[]) info[2] , change );
-                     break;
+            case 1: result = bank.deposit( (Object[]) info[2] , change );
+                    break;
             
-            case 2:  result = new Object[2];
-                     cardController = new Card((int[]) info[2] , (int) info[3]);
-                     result[0] = "Informações do Cartão: \n" + cardController.getSerialNum() + "; "+cardController.getFunds()+";";
-                     cardController.subFunds(fee);
-                     bankController.deposit(fee);
-                     result[1] = "Valor pago: " + fee + "\n" + "Saldo do cartão após pagamento: " + cardController.getFunds();
-                     
-                     
-                     break;
-                
-            case 3:  result = new Object[1];
-                     result[0] = bankController.getFunds();
-                     break;
+            case 2: card = new Card((int[]) info[2] , (int) info[3]);                  
+                    result = "Número do Cartão: \n" + card.getSerialNum() + "\n Saldo: " + card.getFunds() + "; \n";
+                    card.subFunds(fee);
+                    bank.deposit(fee);
+                    result = result + "Valor pago: " + fee + "\n" + "Saldo do cartão após pagamento: " + card.getFunds();
+                    break;
             
-            case 4:  result = new Object[1];
-                     result[0] = bankController.allMoney();
-                     break;
-            
-            default: result = null;
+            default: throw new NonExistentActionException("Ação não existente");
         }
    
         return result;

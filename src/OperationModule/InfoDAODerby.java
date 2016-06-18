@@ -1,29 +1,23 @@
 package OperationModule;
 
-import ExceptionModule.NonExistentActionException;
+import ExceptionModule.NonExistentInformationException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 class InfoDAODerby implements InfoDAO{ //OK
     
-    private Information information;
     private File keepFile;
     //Label: info
     
     public InfoDAODerby(){
-        information = Information.getInstance();
         keepFile = new File("information.txt");
     }
-   
     
-    public Object get(String label) throws NonExistentActionException{
+    public Object get(String label) throws NonExistentInformationException {
         try{
             FileReader fr = new FileReader(keepFile);
             BufferedReader br = new BufferedReader(fr);
@@ -32,10 +26,13 @@ class InfoDAODerby implements InfoDAO{ //OK
                 String aux[] = line.split(":");
                 if(aux[0].equals(label)) return aux;
             }
+            
             br.close();
-        } catch (IOException ex) {
-        } 
-        throw new NonExistentActionException("Label invalido");
+        } catch (IOException ex) {       
+        }
+        
+        throw new NonExistentInformationException("Não existe informação com tal label");
+        
     }
     
     public void set(String label, Object value){
