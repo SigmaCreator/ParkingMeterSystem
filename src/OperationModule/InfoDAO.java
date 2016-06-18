@@ -1,10 +1,21 @@
 package OperationModule;
 
-class InformationModifier { //OK
+import ExceptionModule.NonExistentActionException;
+
+public interface InfoDAO{
+    public Object get(String label) throws NonExistentActionException;
+    
+    public void set(String label, Object value);
+
+}
+
+/*
+
+class InfoDAO { //OK
     
     private Information information;
 
-    InformationModifier(Information information) {
+    InfoDAO(Information information) {
         this.information = information;
     }
     
@@ -59,3 +70,4 @@ class InformationModifier { //OK
     
         
 }
+*/

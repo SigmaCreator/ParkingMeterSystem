@@ -24,8 +24,12 @@ public class Ticket { //OK!
         expiration.add((Time) info[1]);
     }
     
-    @Override
-    public String toString() {
+    public String create(Object[] info, Integer[] id, String address) throws NoThatSWrongException{
+            Ticket ticket = new Ticket(info,id,address);
+            return ticket.toString();
+    }
+    
+    public String print() {
         
         StringBuffer ticket = null;
         
@@ -52,5 +56,17 @@ public class Ticket { //OK!
         ticket.append("____________________________________________________\n");
         
         return ticket.toString();
+    }
+    
+    public String toString(){
+        StringBuffer sb = new StringBuffer();
+        for(Integer i : id) sb.append(i);
+        sb.append(";").append(address).append(";");
+        for(int i : serialNum) sb.append(i);
+        sb.append(";").append(emission.toString()).append(";");
+        sb.append(expiration.toString()).append(";");
+        
+        //id;address;serial;emission;expiration;
+        return sb.toString();
     }
 }

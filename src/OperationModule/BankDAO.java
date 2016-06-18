@@ -1,6 +1,14 @@
 package OperationModule;
 
-class BankModifier { // OK
+public interface BankDAO {
+    
+}
+
+
+
+
+
+/*class BankModifier { // OK
     Bank bank;
     
     public BankModifier(Bank bank){
@@ -25,4 +33,4 @@ class BankModifier { // OK
         return bank.allMoney();
     }
     
-}
+}*/

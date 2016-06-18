@@ -3,31 +3,32 @@ package OperationModule;
 import ExceptionModule.InsufficientMoneyException;
 
 public class Action {
-    private TicketCreator ticketCreator;
+    private Ticket ticket;
     private Payment payment;
-    private InformationController informationController;
+    private Information information;
     
     public Action(){
-        ticketCreator = new TicketCreator();
+        ticket = null;
         payment = new Payment();
-        informationController = new InformationController();
-    }
-    
-    public TicketCreator getTicketCreator() {
-        return ticketCreator;
+        information = new Information();
     }
 
+    public Object createTicket(Ticket t){
+        ticket = t;
+        return ticket;
+    }
+    
     public Payment getPayment() {
         return payment;
     }
 
-    public InformationController getInformationDefiner() {
-        return informationController;
+    public Information getInformation() {
+        return information;
     }
 
     public int getFee(Object time) {
-        Object incrementTime = informationController.getInformationModifierInstance().getIncrement();
-        int incrementFee = informationController.getInformationModifierInstance().getIncrementFee();
+        Object incrementTime = information.getIncrement();
+        int incrementFee = information.getIncrementFee();
         return payment.getFee(time, incrementTime, incrementFee);
     }
 

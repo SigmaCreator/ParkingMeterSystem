@@ -6,12 +6,12 @@ import ResourceModule.Money;
 import ExceptionModule.InsufficientMoneyException;
 
 class Payment { //OK
-    BankController bankController;
-    CardController cardController;
+    BankDAODerby bankController;
+    CardDAODerby cardController;
     
     public Payment(){ 
-        bankController = new BankController(); 
-        cardController = new CardController();
+        bankController = new BankDAODerby(); 
+        cardController = new CardDAODerby();
     }
     
     public Object[] defineAction(Object[] info, int fee, int change) throws Exception {

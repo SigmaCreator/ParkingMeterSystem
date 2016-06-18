@@ -62,7 +62,7 @@ public class ParkingMeter {
         Object result = new Object();
         try{
         switch(act){
-            case 1: result = action.getTicketCreator().create(info, id, address); //OK
+            case 1: result = action.createTicket(new Ticket(info, id, address)); //OK
                     break;
                 
             case 2: int fee = action.getFee(info[1]);
@@ -76,7 +76,7 @@ public class ParkingMeter {
                     result = action.getPayment().defineAction(info,fee,change);
                     break;
                 
-            case 3: result = action.getInformationDefiner().defineAction(info); //OK
+            case 3: result = action.getInformation().defineAction(info); //OK
                     break;
                 
             default: throw new NonExistentActionException("Ação não existente");
