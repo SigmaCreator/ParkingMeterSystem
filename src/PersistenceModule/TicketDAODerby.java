@@ -1,5 +1,7 @@
-package OperationModule;
+package PersistenceModule;
 
+import OperationModule.Ticket;
+import OperationModule.TicketDAO;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

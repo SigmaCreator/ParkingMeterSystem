@@ -1,6 +1,7 @@
 
-package OperationModule;
+package PersistenceModule;
 
+import OperationModule.LoggerDAO;
 import ResourceModule.Logger;
 import java.io.BufferedWriter;
 import java.io.File;
