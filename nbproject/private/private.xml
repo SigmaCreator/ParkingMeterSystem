@@ -3,12 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ManagingModule/LoggerBank.java</file>
             <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ManagingModule/ReportCreator.java</file>
             <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/OperationModule/ParkingMeter.java</file>
             <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ManagingModule/Report.java</file>
             <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ManagingModule/Manager.java</file>
             <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ResourceModule/Logger.java</file>
+=======
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/OperationModule/Payment.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/OperationModule/Ticket.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/OperationModule/Information.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/OperationModule/Action.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/OperationModule/ParkingMeter.java</file>
+>>>>>>> origin/master
         </group>
     </open-files>
 </project-private>
