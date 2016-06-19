@@ -1,7 +1,10 @@
 
 package ManagingModule;
 
+import ExceptionModule.InvalidLoggerException;
 import ResourceModule.Logger;
+import java.io.File;
+import java.io.IOException;
 
 public class Manager {
     private static Manager instance;
@@ -26,8 +29,8 @@ public class Manager {
         return o;
     }
 
-    public void sendLog(Integer[] id, Logger logger){
-        loggerBank.addLogger(id, logger);
+    public void sendLog(File f) throws InvalidLoggerException, IOException{
+        loggerBank.addLogger(f);
     }
     
     
