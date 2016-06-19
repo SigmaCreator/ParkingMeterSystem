@@ -25,7 +25,7 @@ public class ParkingMeter {
     
     //@requires id.length == 5
     //
-    //@ensures this.id == id
+    //@ensures getId() == id
     public void setID(Integer[] id) throws IDLengthIsNotEnoughException {
         if(id == null)
             throw new NullPointerException("ID está nulo");
@@ -41,7 +41,7 @@ public class ParkingMeter {
     
     //@requires address != null
     //
-    //@ensures this.address == address
+    //@ensures getAddress() == address
     public void setAddress(String address) {
         if(address == null)
             throw new NullPointerException("Endereço está nulo");

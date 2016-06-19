@@ -32,9 +32,7 @@ public class Action {
         return information;
     }
 
-    //@ensures incrementTime == information.getIncrement()
-    //@ensures incrementFee == information.getIncrementFee()
-    //@ensures \result == payment.getFee(time, incrementTime, incrementFee)
+    //@ensures \result == payment.getFee(time, information.getIncrement(), information.getIncrementFee())
     public int getFee(Object time) {
         Object incrementTime = information.getIncrement();
         int incrementFee = information.getIncrementFee();
@@ -47,7 +45,7 @@ public class Action {
     }
     
     /*@ pure @*/
-    public void updateDAO(Object[] o, double fee, double change){
+    public void updateDAO(Object[] o, int fee, int change){
         ticket.updateDAO();
         payment.updateDAO(o, fee, change);
     }

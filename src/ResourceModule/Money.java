@@ -5,10 +5,7 @@ public class Money {
     int quantity;
     
     public Money(int coin, int quantity){
-       for( Coin x : Coin.values() ){
-           if( x.equals(coin) ) this.coin = coin;
-       }
-       //vai ter q ter um exception
+       this.coin = coin;
        this.quantity = quantity;
     }
     
