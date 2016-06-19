@@ -14,16 +14,21 @@ public class LoggerBank {
     
     protected LoggerBank(){}
     
+    /*@ pure @*/
     public static LoggerBank getInstance(){
         if(instance == null) 
             instance = new LoggerBank();
         return instance;
     }
 
+    /*@ pure @*/
     public String getLogger(int[] id) {
         return bank.get(id);
     }
     
+    //@requires idString.length()== 5
+    //
+    //@ensures bank.containsKey(id) == true
     public String addLogger(File file) throws InvalidLoggerException, IOException{
         BufferedReader br = new BufferedReader(new FileReader(file));
         StringBuffer sb = new StringBuffer();
@@ -40,6 +45,7 @@ public class LoggerBank {
     }
     
     @Override
+    /*@ pure @*/
     public String toString(){
         StringBuilder sb = new StringBuilder();
         for(String s: bank.values())
