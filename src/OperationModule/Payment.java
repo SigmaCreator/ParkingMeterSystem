@@ -32,6 +32,8 @@ class Payment { //OK
     //@ensures card.getFunds == \old(card.getFunds) - fee
     //@ensures bank.getCardFunds == \old(bank.getCardFunds) + fee
     //@ensures \result = result
+    //@also
+    //@ensures signals (NonExistentActionException e) info[0] != 1 && info[0] != 2
     public Object defineAction(Object[] info, int fee, int change) throws Exception {
         // 1 - pay with money
         // 2 - pay with card 
@@ -64,9 +66,8 @@ class Payment { //OK
         return fee;
     }
 
-    //@requires value > fee
-    //
     //@ensures \result == change
+    //@ensures signals (InsufficientMoneyException e) value < fee
     public int getChange(Object money, int fee) throws InsufficientMoneyException {
         int value = 0;
         

@@ -12,8 +12,8 @@ public class ParkingMeter {
     private Logger logger;
     private LoggerDAO logDAO;
 
-    //@ensures logger == new Logger("ID: "+Arrays.toString(id) +"\nEndereço: "+address+"\n")
-    //@ensures logDAO == new LoggerDAODerby()
+    //@ensures logger == new Logger("ID: "+Arrays.toString(id) +"\nEndereço: "+address+"\n");
+    //@ensures logDAO == new LoggerDAODerby();
     public ParkingMeter() { 
         logger = new Logger("ID: "+Arrays.toString(id) +"\nEndereço: "+address+"\n");
         logDAO = new LoggerDAODerby();
@@ -23,10 +23,10 @@ public class ParkingMeter {
     public Integer[] getID() {
         return id;
     }
-    
-    //@requires id.length == 5
-    //
-    //@ensures getId() == id
+
+    //@ensures getId() == id;
+    //@ensures signals (NullPointerException e) id == null;
+    //@ensures signals (IDLengthIsNotEnoughException e) id.length < 5;
     public void setID(Integer[] id) throws IDLengthIsNotEnoughException {
         if(id == null)
             throw new NullPointerException("ID está nulo");
@@ -39,10 +39,9 @@ public class ParkingMeter {
     public String getAddress() {
         return address;
     }
-    
-    //@requires address != null
-    //
-    //@ensures getAddress() == address
+
+    //@ensures getAddress() == address;
+    //@ensures signals (NullPointerException e) address == null;
     public void setAddress(String address) {
         if(address == null)
             throw new NullPointerException("Endereço está nulo");
@@ -54,8 +53,8 @@ public class ParkingMeter {
         return logger;
     }
 
-    //@requires info != null
-    //@requires \forall (Object o : info) o != null
+    //@ensures signals (NullPointerException e) info == null
+    //@ensures signals (NullPointerException e) 
     //
     //@ensures result[0] == action.getPayment().defineAction(info,fee,change)
     //@ensures result[1] == action.createTicket(totalIncrementTime,ticketSerialNumber,id,address)
