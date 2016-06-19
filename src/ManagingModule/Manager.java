@@ -46,12 +46,5 @@ public class Manager {
             default: o = null;
         }
         return o;
-    }
-
-    /*@ pure @*/
-    public void sendLog(File f) throws InvalidLoggerException, IOException{
-        loggerBank.addLogger(f);
-    }
-    
-    
+    }  
 }

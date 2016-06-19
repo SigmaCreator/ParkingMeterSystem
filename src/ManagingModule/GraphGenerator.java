@@ -6,8 +6,6 @@
 package ManagingModule;
 
 import java.util.HashMap;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.DefaultCategoryDataset;
 
 public class GraphGenerator {
     private LoggerBank loggerBank;
@@ -16,9 +14,7 @@ public class GraphGenerator {
         loggerBank = LoggerBank.getInstance();
     }
     
-    public CategoryDataset generateDataset(int[] id){
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
+    public HashMap<String, Double> generateDataset(int[] id){
         String [] log = loggerBank.getLogger(id).split("\n");
         HashMap<String, Double> values = new HashMap<>();
         String month, year, key="";
@@ -36,9 +32,6 @@ public class GraphGenerator {
                     values.put(key, aux);
             }
         }
-        //dataset.addValue(valor, mês, ano);
-        for(String date : values.keySet())
-            dataset.addValue(values.get(date), date.split("-")[1], date.split("-")[0]);
-        return dataset;
+        return values;
     }
 }

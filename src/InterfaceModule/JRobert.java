@@ -33,15 +33,15 @@ public class JRobert extends javax.swing.JFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        generateValueReport = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        generateGeneralReport = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
+        generateGraph = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -49,7 +49,8 @@ public class JRobert extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jButton4 = new javax.swing.JButton();
+        exportToFile = new javax.swing.JButton();
+        cleanTextArea = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -70,10 +71,10 @@ public class JRobert extends javax.swing.JFrame {
 
         jLabel1.setText("Relatório de Valor arrecadado agrupado por");
 
-        jButton1.setText("Gerar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        generateValueReport.setText("Gerar");
+        generateValueReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                generateValueReportActionPerformed(evt);
             }
         });
 
@@ -90,13 +91,23 @@ public class JRobert extends javax.swing.JFrame {
         buttonGroup2.add(jRadioButton4);
         jRadioButton4.setText("Mês");
 
-        jButton2.setText("Gerar");
+        generateGeneralReport.setText("Gerar");
+        generateGeneralReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateGeneralReportActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Gráfico de Arrecadação Anual");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton3.setText("Gerar");
+        generateGraph.setText("Gerar");
+        generateGraph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateGraphActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Parquímetro");
 
@@ -118,11 +129,11 @@ public class JRobert extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1)
-                    .addComponent(jButton1)
+                    .addComponent(generateValueReport)
                     .addComponent(jLabel2)
-                    .addComponent(jButton2)
+                    .addComponent(generateGeneralReport)
                     .addComponent(jLabel3)
-                    .addComponent(jButton3)
+                    .addComponent(generateGraph)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
@@ -151,7 +162,7 @@ public class JRobert extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(generateValueReport)
                 .addGap(41, 41, 41)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -160,7 +171,7 @@ public class JRobert extends javax.swing.JFrame {
                     .addComponent(jRadioButton4)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(generateGeneralReport)
                 .addGap(41, 41, 41)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -168,7 +179,7 @@ public class JRobert extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(generateGraph)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -176,7 +187,14 @@ public class JRobert extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jButton4.setText("Exportar para arquivo");
+        exportToFile.setText("Exportar para arquivo");
+        exportToFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportToFileActionPerformed(evt);
+            }
+        });
+
+        cleanTextArea.setText("Novo relatório");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -187,8 +205,9 @@ public class JRobert extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton4)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(exportToFile)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cleanTextArea)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -197,7 +216,9 @@ public class JRobert extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(exportToFile)
+                    .addComponent(cleanTextArea))
                 .addContainerGap())
         );
 
@@ -248,9 +269,9 @@ public class JRobert extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void generateValueReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateValueReportActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_generateValueReportActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
@@ -259,6 +280,18 @@ public class JRobert extends javax.swing.JFrame {
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void generateGeneralReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateGeneralReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_generateGeneralReportActionPerformed
+
+    private void generateGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateGraphActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_generateGraphActionPerformed
+
+    private void exportToFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportToFileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_exportToFileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,10 +331,11 @@ public class JRobert extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton cleanTextArea;
+    private javax.swing.JButton exportToFile;
+    private javax.swing.JButton generateGeneralReport;
+    private javax.swing.JButton generateGraph;
+    private javax.swing.JButton generateValueReport;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
