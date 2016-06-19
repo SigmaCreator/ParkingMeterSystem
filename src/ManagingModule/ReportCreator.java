@@ -1,8 +1,6 @@
 
 package ManagingModule;
 
-import java.util.Arrays;
-
 public class ReportCreator {
     private static ReportCreator instance;
     private LoggerBank loggerBank = LoggerBank.getInstance();

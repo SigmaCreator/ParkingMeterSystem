@@ -2,7 +2,6 @@
 package ManagingModule;
 
 import ExceptionModule.InvalidLoggerException;
-import ResourceModule.Logger;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;

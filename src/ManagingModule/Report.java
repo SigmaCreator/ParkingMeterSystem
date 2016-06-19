@@ -1,9 +1,6 @@
 
 package ManagingModule;
 
-import ResourceModule.Logger;
-
-
 public class Report { // OK
     private StringBuilder report;
     
