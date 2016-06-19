@@ -1,5 +1,6 @@
 package OperationModule;
 
+import PersistenceModule.LoggerDAODerby;
 import ResourceModule.Logger;
 import ExceptionModule.IDLengthIsNotEnoughException;
 import java.util.Arrays;

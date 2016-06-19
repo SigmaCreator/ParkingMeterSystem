@@ -8,6 +8,7 @@ public class ReportCreator {
     
     protected ReportCreator(){}
     
+    /*@ pure @*/
     public static ReportCreator getInstance(){
         if(instance == null) 
             instance = new ReportCreator();

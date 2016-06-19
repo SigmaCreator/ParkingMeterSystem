@@ -12,12 +12,24 @@ public class Manager {
     
     protected Manager(){}
     
+    /*@ pure @*/
     public static Manager getInstance(){
         if(instance == null) 
             instance = new Manager();
         return instance;
     }
     
+    //@requires info[0] == 1
+    //
+    //@ensures \result == loggerBank.addLogger((File)info[1])
+    //@also
+    //@requires info[0] == 2
+    //
+    //@ensures \result == reportCreator.createReport((int)info[1], (int)info[2])
+    //@also
+    //@requires info[0] == 3
+    //
+    //@ensures \result == reportCreator.createReport((int[])info[1], (int)info[2])
     public Object defineAction(Object[] info) throws InvalidLoggerException, IOException{
         //info[0] = action;
         //info[1] = File newLogger | int filter | int[] id
@@ -36,6 +48,7 @@ public class Manager {
         return o;
     }
 
+    /*@ pure @*/
     public void sendLog(File f) throws InvalidLoggerException, IOException{
         loggerBank.addLogger(f);
     }

@@ -1,5 +1,7 @@
-package OperationModule;
+package PersistenceModule;
 
+import OperationModule.Bank;
+import OperationModule.BankDAO;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,7 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-class BankDAODerby implements BankDAO { //OK
+public class BankDAODerby implements BankDAO { //OK
     private File keepFile;
     
     //@ensures keepFile == new File("bank.txt")

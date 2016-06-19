@@ -1,8 +1,9 @@
 package OperationModule;
 
+import PersistenceModule.BankDAODerby;
 import ResourceModule.Money;
 
-class Bank { // OK
+public class Bank { // OK
     private Money[] funds;
     private int cardFunds;
     private BankDAO bankDAO;
