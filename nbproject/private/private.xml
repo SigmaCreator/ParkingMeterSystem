@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>src/OperationalModule/InformationModifier.java</url>
-            <bookmark id="1">
-                <name/>
-                <line>30</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/OperationModule/BankDAO.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/OperationModule/Payment.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/OperationModule/Information.java</file>
             <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/OperationModule/InfoDAO.java</file>
-=======
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/OperationModule/Card.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ManagingModule/LoggerBank.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ManagingModule/ReportCreator.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/OperationModule/ParkingMeter.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ManagingModule/Report.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ManagingModule/Manager.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ResourceModule/Logger.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/OperationModule/Payment.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/OperationModule/PaymentDAO.java</file>
->>>>>>> origin/master
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/OperationModule/ParkingMeter.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/OperationModule/InfoDAODerby.java</file>
         </group>
     </open-files>
 </project-private>
