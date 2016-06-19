@@ -9,8 +9,14 @@ class Card {    //OK
     private int funds;
     private CardDAO cardDAO;
 
+    //@requires seriaNum.length == 128
+    //@requires funds >= 0
+    //
+    //@ensures this.serialNum == serialNum
+    //@ensures this.funds == funds
+    //2ensures cardDAO == new CardDAODerby()
     public Card(int[] serialNum, int funds) throws SerialNumberLengthIsNotEnough, NegativeCardFundsException {
-        if( serialNum.length < 128 )
+        if( serialNum.length < 128 || serialNum.length > 128 )
             throw new SerialNumberLengthIsNotEnough("Número Serial inválido de cartão");
         
         if( funds < 0 )
@@ -21,10 +27,12 @@ class Card {    //OK
         cardDAO = new CardDAODerby();
     }
 
+    /*@ pure @*/
     public int getFunds() {
         return funds;
     }
     
+    /*@ pure @*/
     public int[] getSerialNum() {
         return serialNum;
     }
@@ -37,6 +45,7 @@ class Card {    //OK
         funds = funds - value;
     }
     
+    //@ensures \result == s.toString()
     public String print() {
         StringBuffer s = null;
         
@@ -52,6 +61,7 @@ class Card {    //OK
         return s.toString();
     }
     
+    /*@ pure @*/
     public String toString(){
         StringBuffer s = new StringBuffer();
         
@@ -62,6 +72,7 @@ class Card {    //OK
         return s.toString();
     }
 
+    /*@ pure @*/
     public void updateDAO(double fee) {
         cardDAO.addCard(this, fee);
     }

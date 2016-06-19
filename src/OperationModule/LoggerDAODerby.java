@@ -11,9 +11,11 @@ import java.util.logging.Level;
 public class LoggerDAODerby implements LoggerDAO{
     private File keepFile;
     
+    //@ensures keepFile == new File("logger.txt")
     public LoggerDAODerby(){
         keepFile = new File("logger.txt");
     }
+    
     @Override
     public void addLog(Logger log) {
         try {

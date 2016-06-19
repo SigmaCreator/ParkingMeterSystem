@@ -8,21 +8,22 @@ import java.io.IOException;
 public class TicketDAODerby implements TicketDAO { //OK!
     private File keepFile;
     
+    //@ensures keepFile == new File("tickets.txt")
     public TicketDAODerby (){
         keepFile = new File("tickets.txt");
     }
 
     public void add(Ticket t) {
-    try{
-    BufferedWriter writer = new BufferedWriter(new FileWriter(keepFile));
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter(keepFile));
     
-    writer.write(t.toString());
-    writer.write("\n");
+            writer.write(t.toString());
+            writer.write("\n");
     
-    writer.close();
-    }catch(IOException e){
+            writer.close();
+        }catch(IOException e){
         
-    }
+        }
     }
 
     public Ticket[] getAll(String label) {

@@ -10,6 +10,7 @@ import java.io.IOException;
 class BankDAODerby implements BankDAO { //OK
     private File keepFile;
     
+    //@ensures keepFile == new File("bank.txt")
     public BankDAODerby(){ keepFile = new File("bank.txt"); }
 
     @Override

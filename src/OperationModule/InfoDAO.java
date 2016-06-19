@@ -6,6 +6,6 @@ public interface InfoDAO{
     
     public Object get(String label) throws NonExistentInformationException;
     
-    public void set(String label, Object value);
+    /*@ pure @*/ public void set(String label, Object value);
 
 }
