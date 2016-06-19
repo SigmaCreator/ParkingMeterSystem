@@ -14,12 +14,12 @@ public class Ticket { //OK!
     private Calendar calendar;
     private TicketDAO ticketDAO;
     
-    //@ensures ticketDAO == new TicketDAODerby();
-    //@ensures calendar == Calendar.getInstance();
-    //@ensures this.id == id;
-    //@ensures this.address == address;
-    //@ensures serialNum == serialNumber;
-    //@ensures emission == new Time(calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE));
+    //@ensures ticketDAO == new TicketDAODerby()
+    //@ensures calendar == Calendar.getInstance()
+    //@ensures this.id == id
+    //@ensures this.address == address
+    //@ensures serialNum == serialNumber
+    //@ensures emission == new Time(calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE))
     //@ensures expiration == 
     public Ticket(Object totalIncrement, int[] serialNumber, Integer[] id, String address) throws NoThatSWrongException{
         ticketDAO = new TicketDAODerby();

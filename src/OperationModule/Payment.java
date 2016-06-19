@@ -10,13 +10,27 @@ class Payment { //OK
     Bank bank;
     Card card;
     PaymentDAO paymentDAO;
-    
+ 
+    //@ensures paymentDAO == new PaymentDAODerby()
+    //@ensures bank == new Bank() 
+    //@ensures card == null
     public Payment(){ 
         paymentDAO = new PaymentDAODerby();
         bank = new Bank(); 
         card = null;
     }
     
+    //@requires info[0] == 1
+    //
+    //@ensures bank.getFunds == \old(bank.getFundas) + 
+    //@ensures \result == result
+    //@also
+    //@requires info[0] == 2
+    //
+    //@ensures card == new Card((int[]) info[2] , (int) info[3])
+    //@ensures card.getFunds == \old(card.getFunds) - fee
+    //@ensures bank.getCardFunds == \old(bank.getCardFunds) + fee
+    //@ensures \result = result
     public Object defineAction(Object[] info, int fee, int change) throws Exception {
         // 1 - pay with money
         // 2 - pay with card 
@@ -41,6 +55,7 @@ class Payment { //OK
         return result;
     }
     
+    //@ensures \result = (((Time) time).getTimeInMinutes() / ((Time) incrementTime).getTimeInMinutes()) * incrementFee
     public int getFee(Object time, Object incrementTime, int incrementFee) {
         int minutes = ((Time) time).getTimeInMinutes();
         int incrementMinutes = ((Time) incrementTime).getTimeInMinutes();
@@ -48,6 +63,9 @@ class Payment { //OK
         return fee;
     }
 
+    //@requires value > fee
+    //
+    //@ensures \result == change
     public int getChange(Object money, int fee) throws InsufficientMoneyException {
         int value = 0;
         
@@ -62,7 +80,8 @@ class Payment { //OK
         return change;
     }
     
-    public void updateDAO(Object[] o, double fee, double change){
+    /*@ pure @*/
+    public void updateDAO(Object[] o, int fee, int change){
         paymentDAO.addPayment(o, fee, change);
         if((int)o[0]!= 1)card.updateDAO(fee);
         bank.updateDAO();
