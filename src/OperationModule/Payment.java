@@ -9,8 +9,10 @@ import ExceptionModule.NonExistentActionException;
 class Payment { //OK
     Bank bank;
     Card card;
+    PaymentDAO paymentDAO;
     
     public Payment(){ 
+        paymentDAO = new PaymentDAODerby();
         bank = new Bank(); 
         card = null;
     }
@@ -58,6 +60,12 @@ class Payment { //OK
         int change = value - fee;
         
         return change;
+    }
+    
+    public void updateDAO(Object[] o, double fee, double change){
+        paymentDAO.addPayment(o, fee, change);
+        if((int)o[0]!= 1)card.updateDAO(card, fee);
+        bank.updateDAO();
     }
     
 }

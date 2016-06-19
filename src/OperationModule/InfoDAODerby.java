@@ -37,33 +37,28 @@ class InfoDAODerby implements InfoDAO{ //OK
     
     public void set(String label, Object value){
     
-    String arquivoTmp = "ARQUIVO-tmp";
-    try{
-    BufferedWriter writer = new BufferedWriter(new FileWriter(arquivoTmp));
-    BufferedReader reader = new BufferedReader(new FileReader(keepFile));
+        String arquivoTmp = "ARQUIVO-tmp";
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter(arquivoTmp));
+            BufferedReader reader = new BufferedReader(new FileReader(keepFile));
 
-    String linha;
-    boolean wrote = false;
-    while ((linha = reader.readLine()) != null) {
-        String aux[] = linha.split(":");
-        if (aux[0].equals(label)) {
-            linha = label+":"+value;
-            wrote = true;
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String aux[] = line.split(":");
+                if (aux[0].equals(label)) {
+                    line = label+":"+value;
+                }
+                writer.write(line + "\n");
+            }
+
+            writer.close();        
+            reader.close();
+
+            keepFile.delete();
+            new File(arquivoTmp).renameTo(keepFile);
+        }catch(IOException e){
+
         }
-        writer.write(linha + "\n");
-    }
-    if(!wrote){
-        writer.write(label+":"+value);
-    }
-
-    writer.close();        
-    reader.close();
-
-    keepFile.delete();
-    new File(arquivoTmp).renameTo(keepFile);
-    }catch(IOException e){
-        
-    }
     }
     
 }

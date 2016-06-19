@@ -13,7 +13,7 @@ class CardDAODerby implements CardDAO { //OK
     }
 
     @Override
-    public void addCard(Card c, int fee) throws SerialNumberLengthIsNotEnough {
+    public void addCard(Card c, double fee){
 
         try{
         BufferedWriter writer = new BufferedWriter(new FileWriter(keepFile));

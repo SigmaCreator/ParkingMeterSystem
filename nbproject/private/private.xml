@@ -11,6 +11,17 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/OperationModule/LoggerDAO.java</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/OperationModule/Action.java</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/OperationModule/BankDAODerby.java</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/OperationModule/LoggerDAODerby.java</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ManagingModule/ReportCreator.java</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/OperationModule/ParkingMeter.java</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ManagingModule/Report.java</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/OperationModule/Bank.java</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ManagingModule/Manager.java</file>
+            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ResourceModule/Logger.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -19,6 +19,7 @@ public class PaymentDAODerby implements PaymentDAO{
     
     @Override
     public void addPayment(Object info[], double fee, double change) {
+        
         try{
         BufferedWriter writer = new BufferedWriter(new FileWriter(keepFile));
         StringBuffer s = null;
@@ -31,7 +32,7 @@ public class PaymentDAODerby implements PaymentDAO{
         s.append(fee).append(";").append(change).append(";");
         writer.write(s.toString());
         writer.write("\n");
-
+        //1|serialNum;fee;change;
         writer.close();
         }catch(IOException e){
 

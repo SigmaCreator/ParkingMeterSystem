@@ -74,8 +74,8 @@ class Card {    //OK
         return s.toString();
     }
 
-    public void addCard(int fee) throws SerialNumberLengthIsNotEnough {
-        cardDAO.addCard(this, fee);
+    public void updateDAO(Card c, double fee) {
+        cardDAO.addCard(c, fee);
     }
     
 }

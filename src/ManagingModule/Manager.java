@@ -19,7 +19,7 @@ public class Manager {
     public Object defineAction(Object[] info){
         Object o;
         switch((int)info[0]){
-            case 1: o = reportCreator.createReport((int[])info[1]);
+            //case 1: o = reportCreator.createReport((int[])info[1]);
             //case 2: graphGenerator;
             default: o = null;
         }

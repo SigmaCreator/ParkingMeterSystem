@@ -37,5 +37,9 @@ public class Action {
         return payment.getChange(money,fee);
     }
     
+    public void updateDAO(Object[] o, double fee, double change){
+        ticket.updateDAO();
+        payment.updateDAO(o, fee, change);
+    }
     
 }

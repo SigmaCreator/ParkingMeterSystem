@@ -16,8 +16,12 @@ public class ReportCreator {
         return instance;
     }
     
-    public String createReport(int[] id){
-        report.getReportBuilder().append("ID do Parquímentro: " + Arrays.toString(id));
+    public String createReport(int filterType, int filter){
+        
+        return null;
+    }
+    
+    public String createReport(int[] id, int filterType, int filter){
         report.addLog(loggerBank.getLogger(id));
         return report.getReport();
     }

@@ -12,8 +12,10 @@ public class Ticket { //OK!
     Time emission;
     Time expiration;
     Calendar calendar;
+    TicketDAO ticketDAO;
     
     public Ticket(Object totalIncrement, int[] serialNumber, Integer[] id, String address) throws NoThatSWrongException{
+        ticketDAO = new TicketDAODerby();
         calendar = Calendar.getInstance();
         this.id = id;
         this.address = address;
@@ -22,6 +24,10 @@ public class Ticket { //OK!
         expiration = new Time(0,0);
         expiration.add(emission);
         expiration.add((Time) totalIncrement);
+    }
+    
+    public void updateDAO(){
+        ticketDAO.add(this);
     }
     
     public String print() {

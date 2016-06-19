@@ -3,8 +3,9 @@ package OperationModule;
 import ResourceModule.Money;
 
 class Bank { // OK
-    Money[] funds;
-    int cardFunds;
+    private Money[] funds;
+    private int cardFunds;
+    private BankDAO bankDAO;
     
     public Bank(){ 
         funds = new Money[5];
@@ -16,6 +17,7 @@ class Bank { // OK
         
         cardFunds = 0;
         
+        bankDAO = new BankDAODerby();
     }
     
     public Object[] deposit(Object[] money, int change) {
@@ -89,7 +91,11 @@ class Bank { // OK
     public Object getFunds() {
         return funds;
     }  // Retorna todas as moedas existentes no parquímetro
-
+    
+    public int getCardFunds(){
+        return cardFunds;
+    }
+    
     public Object allMoney() {
         int total = 0;
         
@@ -122,7 +128,20 @@ class Bank { // OK
         return s.toString();
     }
     
-    // public String toString() {}
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+        String label;
+        for(Money m: funds){
+            label = "M"+m.getCoin();
+            sb.append(label).append(":").append(m.getQuantity()).append("\n");   
+        }
+        sb.append("C:").append(cardFunds);
+        sb.append("\nT:").append((int)allMoney());
+        return sb.toString();
+    }
     
+    public void updateDAO(){
+        bankDAO.update(this);
+    }
     
 }

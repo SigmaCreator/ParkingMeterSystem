@@ -16,10 +16,6 @@ public class Report { // OK
         report.append(logger.toString());
     }
     
-    public StringBuilder getReportBuilder(){
-        return report;
-    }
-    
     public String getReport(){
         return report.toString();
     }
