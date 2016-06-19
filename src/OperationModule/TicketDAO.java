@@ -1,6 +1,6 @@
 package OperationModule;
 
 interface TicketDAO {
-    void add(Ticket t);
-    Ticket[] getAll(String label);
+    /*@ pure @*/ void add(Ticket t);
+    /*@ pure @*/ Ticket[] getAll(String label);
 }

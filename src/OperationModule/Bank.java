@@ -7,6 +7,14 @@ class Bank { // OK
     private int cardFunds;
     private BankDAO bankDAO;
     
+    //@ensures funds == new Money[5];
+    //@ensures funds[0] == new Money(100,0);
+    //@ensures funds[1] == new Money(50,0);
+    //@ensures funds[2] == new Money(25,0);
+    //@ensures funds[3] == new Money(10,0);
+    //@ensures funds[4] == new Money(5,0);
+    //@ensures cardFunds == 0;
+    //@ensures bankDAO == new BankDAODerby();
     public Bank(){ 
         funds = new Money[5];
         funds[0] = new Money(100,0);
@@ -20,6 +28,7 @@ class Bank { // OK
         bankDAO = new BankDAODerby();
     }
     
+    //@ensures \result == result
     public Object[] deposit(Object[] money, int change) {
         
         Object[] result = new Object[3];
@@ -54,6 +63,8 @@ class Bank { // OK
         
     } // Depósito com dinheiro
     
+    //@ensures aux >= 0 || aux <= change
+    //@ensures \result = debit
     private Money[] debit(int change){
         int aux = change;
         Money[] debit = new Money[5];
@@ -84,18 +95,22 @@ class Bank { // OK
         return debit;
     } // Debita do banco o valor de troco
 
+    //@ensures getCardFunds() == \old(getCardFunds) + funds
     public void deposit(int funds) {
         cardFunds = cardFunds + funds;
     } // Depósito com cartão
 
+    /*@ pure @*/
     public Object getFunds() {
         return funds;
     }  // Retorna todas as moedas existentes no parquímetro
     
+    /*@ pure @*/
     public int getCardFunds(){
         return cardFunds;
     }
     
+    /*@ pure @*/
     public Object allMoney() {
         int total = 0;
         
@@ -107,6 +122,7 @@ class Bank { // OK
         return total;
     } // Retorna todo dinheiro arrecadado
     
+    //@ensures \result == s.toString()
     public String print(){
         StringBuilder s = new StringBuilder();
         
@@ -128,6 +144,7 @@ class Bank { // OK
         return s.toString();
     }
     
+    /*@ pure @*/
     public String toString() {
         StringBuffer sb = new StringBuffer();
         String label;
@@ -140,6 +157,7 @@ class Bank { // OK
         return sb.toString();
     }
     
+    /*@ pure @*/
     public void updateDAO(){
         bankDAO.update(this);
     }

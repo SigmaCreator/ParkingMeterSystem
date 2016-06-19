@@ -1,7 +1,7 @@
 package OperationModule;
 
 public interface BankDAO {
-    void update(Bank bank);
+    /*@ pure @*/ void update(Bank bank);
 }
 
 

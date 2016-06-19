@@ -13,6 +13,7 @@ import java.io.IOException;
 public class PaymentDAODerby implements PaymentDAO{
     private File keepFile;
     
+    //@ensures keepFile == new File("payments.txt")
     public PaymentDAODerby(){
         keepFile = new File("payments.txt");
     }

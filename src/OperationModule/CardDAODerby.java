@@ -7,6 +7,8 @@ import java.io.IOException;
 
 class CardDAODerby implements CardDAO { //OK
     private File keepFile;
+    
+    //@ensures keepFile == new File("cards.txt")
     public CardDAODerby() {
         keepFile = new File("cards.txt");
     }

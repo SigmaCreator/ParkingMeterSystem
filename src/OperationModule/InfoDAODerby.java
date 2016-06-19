@@ -13,10 +13,14 @@ class InfoDAODerby implements InfoDAO{ //OK
     private File keepFile;
     //Label: info
     
+    //@ensures keepFile == new File("information.txt")
     public InfoDAODerby(){
         keepFile = new File("information.txt");
     }
     
+    //@requires aux[0] == label
+    //
+    //@ensures \result == aux
     public Object get(String label) throws NonExistentInformationException {
         try{
             FileReader fr = new FileReader(keepFile);

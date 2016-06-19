@@ -68,7 +68,7 @@ public class Ticket { //OK!
         return ticket.toString();
     }
     
-    //@ensures \result == sb.toString()
+    /*@ pure @*/
     public String toString(){
         StringBuffer sb = new StringBuffer();
         for(Integer i : id) sb.append(i);
