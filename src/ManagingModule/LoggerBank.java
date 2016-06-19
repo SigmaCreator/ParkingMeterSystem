@@ -1,12 +1,17 @@
 
 package ManagingModule;
 
+import ExceptionModule.InvalidLoggerException;
 import ResourceModule.Logger;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class LoggerBank {
     private static LoggerBank instance;
-    private HashMap<Integer[],Logger> bank;
+    private HashMap<Integer[],String> bank;
     
     protected LoggerBank(){}
     
@@ -16,12 +21,20 @@ public class LoggerBank {
         return instance;
     }
 
-    public Logger getLogger(int[] id) {
+    public String getLogger(int[] id) {
         return bank.get(id);
     }
     
-    public Boolean addLogger(Integer[] id, Object logger){
-        if( bank.put(id,(Logger)logger) != null ) return true;
-        return false;
+    public void addLogger(File file) throws InvalidLoggerException, IOException{
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        StringBuffer sb = new StringBuffer();
+        String line = br.readLine();
+        String idString = line.split(":")[1];
+        Integer[] id = new Integer[5];
+        for(int i=0; i<5; i++)
+            id[i] = Integer.parseInt(String.valueOf(idString.charAt(i))); 
+        while((line = br.readLine())!=null)
+            sb.append("\n").append(line);
+        bank.put(id, sb.toString());
     }
 }

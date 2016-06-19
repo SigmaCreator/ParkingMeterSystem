@@ -6,12 +6,12 @@ public class Logger {
     StringBuffer log;
     Calendar calendar;
     
-    public Logger(){ log = new StringBuffer(); }
+    public Logger(String ini){ log = new StringBuffer(ini); }
 
     public void update(Exception error) {
         
         calendar = Calendar.getInstance();
-        log.append("Log Date ");
+        log.append("\nLog Date ");
         log.append(calendar.getTime().toString());
         log.append("\n");
         log.append("==============================\n");
@@ -23,7 +23,7 @@ public class Logger {
     public void update(String newLog) {
         
         calendar = Calendar.getInstance();
-        log.append("Log Date ");
+        log.append("\nLog Date ");
         log.append(calendar.getTime().toString());
         log.append("\n");
         log.append("==============================\n");

@@ -11,11 +11,8 @@ public class ParkingMeter {
     private Logger logger;
     private LoggerDAO logDAO;
 
-    public ParkingMeter(Logger logger) { 
-        if(logger == null)
-            throw new NullPointerException("Logger está nulo"); 
-        action = new Action(); 
-        this.logger = logger;
+    public ParkingMeter() { 
+        logger = new Logger("ID: "+Arrays.toString(id) +"\nEndereço: "+address+"\n");
         logDAO = new LoggerDAODerby();
     }
 
@@ -53,8 +50,7 @@ public class ParkingMeter {
         
         Object[] result  = new Object[2];
         StringBuilder log = new StringBuilder();
-        log.append("ID: ").append(Arrays.toString(id)).append("\n");
-        log.append("Endereço: ").append(address).append("\n");
+        
         
         try{
             
