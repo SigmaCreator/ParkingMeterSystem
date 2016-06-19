@@ -21,8 +21,18 @@ public class ReportCreator {
         return null;
     }
     
-    public String createReport(int[] id, int filterType, int filter){
-        report.addLog(loggerBank.getLogger(id));
+    public String createReport(int[] id, int filterType, int filter){ //total valor arrecadado agrupados por mês ou ano
+        String[] log = loggerBank.getLogger(id).split("\n");
+        String date;
+        boolean write = false;
+        double total = 0;
+        for(String line: log){
+            if(line.split(":")[0].equalsIgnoreCase("log_date")){
+                date = line.split(":")[1];
+                write = filterType==0 ? filter==Integer.parseInt(date.split("-")[0]) : filter==Integer.parseInt(date.split("-")[2]);
+            }
+            if(write && ) report.addLog(line);
+        }
         return report.getReport();
     }
     
