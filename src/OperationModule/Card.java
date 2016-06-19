@@ -10,12 +10,11 @@ public class Card {    //OK
     private int funds;
     private CardDAO cardDAO;
 
-    //@requires seriaNum.length == 128
-    //@requires funds >= 0
-    //
     //@ensures this.serialNum == serialNum
+    //@ensures signals (SerialNumberLengthIsNotEnough e) seriaNum.length != 128
     //@ensures this.funds == funds
-    //2ensures cardDAO == new CardDAODerby()
+    //@ensures signals (NegativeCardFundsException e) funds < 0
+    //@ensures cardDAO == new CardDAODerby()
     public Card(int[] serialNum, int funds) throws SerialNumberLengthIsNotEnough, NegativeCardFundsException {
         if( serialNum.length < 128 || serialNum.length > 128 )
             throw new SerialNumberLengthIsNotEnough("Número Serial inválido de cartão");
@@ -38,6 +37,8 @@ public class Card {    //OK
         return serialNum;
     }
 
+    //@ensures getFunds() == \old(getFunds) - value
+    //@ensures signals (NotEnoughCardFundsException e) (funds - value) < 0
     public void subFunds(int value) throws NotEnoughCardFundsException {
         
         if ( (funds - value) < 0 )

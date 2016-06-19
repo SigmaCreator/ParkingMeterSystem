@@ -17,6 +17,7 @@ public class Action {
         information = new Information();
     }
 
+    //@ensures \result == (new Ticket(time, (int[]) serialNumber, id, address)).print()
     public Object createTicket(Object time, Object serialNumber, Integer[] id, String address) throws NoThatSWrongException{
         ticket = new Ticket(time, (int[]) serialNumber, id, address);
         return ticket.print();

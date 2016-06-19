@@ -45,9 +45,8 @@ class Information { //OK!
         return startHour;
     }
 
-    //@requires startHour != null
-    //
     //@ensures getStartHour() == (Time) startHour
+    //@ensures signals (NullPointerException e) startHour == null
     public void setStartHour(Object startHour) {
         if(startHour == null)
             throw new NullPointerException("Hora de Início está nula");
@@ -60,9 +59,8 @@ class Information { //OK!
         return finishHour;
     }
 
-    //@requires finishHour != null
-    //
     //@ensures getFinishHour() == (Time) finishHour
+    //@ensures signals (NullPointerException e) finishHour == null
     public void setFinishHour(Object finishHour) {
         if(finishHour == null)
             throw new NullPointerException("Hora de Término está nula");
@@ -75,9 +73,8 @@ class Information { //OK!
         return minTime;
     }
 
-    //@requires minTime != null
-    //
     //@ensures getMinTime() == (Time) minTime
+    //@ensures signals (NullPointerException e) minTime == null
     public void setMinTime(Object minTime) {
         if(minTime == null)
             throw new NullPointerException("Tempo mínimo está nulo");
@@ -90,9 +87,8 @@ class Information { //OK!
         return maxTime;
     }
 
-    //@requires maxTime != null
-    //
     //@ensures getMaxTime() == (Time) maxTime
+    //@ensures signals (NullPointerException e) maxTime == null
     public void setMaxTime(Object maxTime) {
         if(maxTime == null)
             throw new NullPointerException("Tempo máximo está nulo");
@@ -105,9 +101,8 @@ class Information { //OK!
         return increment;
     }
 
-    //@requires increment != null
-    //
     //@ensures getIncrement() == (Time) increment
+    //@ensures signals (NullPointerException e) increment == null
     public void setIncrement(Object increment) {
         if(increment == null)
             throw new NullPointerException("Incremento está nulo");
@@ -119,10 +114,9 @@ class Information { //OK!
     public int getIncrementFee() {
         return incrementFee;
     }
-    
-    //@requires incrementFee != null
-    //
+
     //@ensures getIncrementFee() = incrementFee
+    //@ensures signals (NullPointerException e) incrementFee == null
     public void setIncrementFee(int incrementFee) {
         if(incrementFee == 0 || incrementFee < 0)
             throw new NullPointerException("Taxa de incremento está nula ou é menor que zero");
