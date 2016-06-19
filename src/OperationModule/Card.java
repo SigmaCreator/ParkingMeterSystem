@@ -1,10 +1,11 @@
 package OperationModule;
 
+import PersistenceModule.CardDAODerby;
 import ExceptionModule.NegativeCardFundsException;
 import ExceptionModule.SerialNumberLengthIsNotEnough;
 import ExceptionModule.NotEnoughCardFundsException;
 
-class Card {    //OK
+public class Card {    //OK
     private int[] serialNum;
     private int funds;
     private CardDAO cardDAO;

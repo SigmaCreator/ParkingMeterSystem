@@ -1,11 +1,13 @@
-package OperationModule;
+package PersistenceModule;
 
+import OperationModule.Card;
+import OperationModule.CardDAO;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-class CardDAODerby implements CardDAO { //OK
+public class CardDAODerby implements CardDAO { //OK
     private File keepFile;
     
     //@ensures keepFile == new File("cards.txt")
