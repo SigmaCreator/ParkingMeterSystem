@@ -19,11 +19,19 @@ public class Manager {
         return instance;
     }
     
-    public Object defineAction(Object[] info){
+    public Object defineAction(Object[] info) throws InvalidLoggerException, IOException{
+        //info[0] = action;
+        //info[1] = File newLogger | int filter | int[] id
+        //info[2] = int filterType
         Object o;
         switch((int)info[0]){
-            //case 1: o = reportCreator.createReport((int[])info[1]);
-            //case 2: graphGenerator;
+            case 1: o = loggerBank.addLogger((File)info[1]);
+                    break;
+            case 2: o = reportCreator.createReport((int)info[1], (int)info[2]);
+                    break;
+            case 3: o = reportCreator.createReport((int[])info[1], (int)info[2]);
+                    break;
+            //case 4: gera grafico de valor arrecadado por ano mes a mes
             default: o = null;
         }
         return o;
