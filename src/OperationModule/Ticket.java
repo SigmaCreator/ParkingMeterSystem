@@ -14,6 +14,13 @@ public class Ticket { //OK!
     Calendar calendar;
     TicketDAO ticketDAO;
     
+    //@ensures ticketDAO == new TicketDAODerby();
+    //@ensures calendar == Calendar.getInstance();
+    //@ensures this.id == id;
+    //@ensures this.address == address;
+    //@ensures serialNum == serialNumber;
+    //@ensures emission == new Time(calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE));
+    //@ensures expiration == 
     public Ticket(Object totalIncrement, int[] serialNumber, Integer[] id, String address) throws NoThatSWrongException{
         ticketDAO = new TicketDAODerby();
         calendar = Calendar.getInstance();
@@ -26,10 +33,12 @@ public class Ticket { //OK!
         expiration.add((Time) totalIncrement);
     }
     
+    /*@ pure @*/
     public void updateDAO(){
         ticketDAO.add(this);
     }
     
+    //@ensures \result == ticket.toString()
     public String print() {
         
         StringBuffer ticket = null;
@@ -59,6 +68,7 @@ public class Ticket { //OK!
         return ticket.toString();
     }
     
+    //@ensures \result == sb.toString()
     public String toString(){
         StringBuffer sb = new StringBuffer();
         for(Integer i : id) sb.append(i);
