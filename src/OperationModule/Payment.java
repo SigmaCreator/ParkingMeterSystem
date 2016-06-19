@@ -64,7 +64,7 @@ class Payment { //OK
     
     public void updateDAO(Object[] o, double fee, double change){
         paymentDAO.addPayment(o, fee, change);
-        if((int)o[0]!= 1)card.updateDAO(card, fee);
+        if((int)o[0]!= 1)card.updateDAO(fee);
         bank.updateDAO();
     }
     

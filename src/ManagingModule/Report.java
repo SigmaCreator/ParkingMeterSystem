@@ -11,9 +11,9 @@ public class Report { // OK
         report = new StringBuilder();
     }
     
-    public void addLog(Logger logger){
+    public void addLog(String logger){
         report.append("\n");
-        report.append(logger.toString());
+        report.append(logger);
     }
     
     public String getReport(){
