@@ -20,13 +20,12 @@ public class ParkingMeter {
         return id;
     }
     
-    public Boolean setID(Integer[] id) throws IDLengthIsNotEnoughException {
+    public void setID(Integer[] id) throws IDLengthIsNotEnoughException {
         if(id == null)
             throw new NullPointerException("ID está nulo");
         if( id.length < 5 )
             throw new IDLengthIsNotEnoughException("ID possui menos de 5 digitos");
         this.id = id;
-        return true;
     }
 
     public String getAddress() {

@@ -6,13 +6,13 @@ import ResourceModule.Time;
 import java.util.Calendar;
 
 public class Ticket { //OK!
-    Integer[] id;
-    int[] serialNum;
-    String address;
-    Time emission;
-    Time expiration;
-    Calendar calendar;
-    TicketDAO ticketDAO;
+    private Integer[] id;
+    private int[] serialNum;
+    private String address;
+    private Time emission;
+    private Time expiration;
+    private Calendar calendar;
+    private TicketDAO ticketDAO;
     
     public Ticket(Object totalIncrement, int[] serialNumber, Integer[] id, String address) throws NoThatSWrongException{
         ticketDAO = new TicketDAODerby();

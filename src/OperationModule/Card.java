@@ -29,18 +29,6 @@ class Card {    //OK
         return serialNum;
     }
 
-    public Boolean setSerialNum(int[] serialNum) {
-        if (serialNum.length < 5) return false;
-        this.serialNum = serialNum;
-        return true;
-    }
-
-    public Boolean addFunds(int value) {
-        if ( value < 0 ) return false;
-        funds = funds + value;
-        return true;
-    }
-
     public void subFunds(int value) throws NotEnoughCardFundsException {
         
         if ( (funds - value) < 0 )
@@ -74,8 +62,8 @@ class Card {    //OK
         return s.toString();
     }
 
-    public void updateDAO(Card c, double fee) {
-        cardDAO.addCard(c, fee);
+    public void updateDAO(double fee) {
+        cardDAO.addCard(this, fee);
     }
     
 }
