@@ -9,9 +9,16 @@ import java.util.HashMap;
 
 public class GraphGenerator {
     private LoggerBank loggerBank;
+    private static GraphGenerator instance;
     
-    public GraphGenerator(){
+    protected GraphGenerator(){
         loggerBank = LoggerBank.getInstance();
+    }
+    
+    public static GraphGenerator getInstance(){
+        if( instance == null )
+            instance = new GraphGenerator();
+        return instance;
     }
     
     public HashMap<String, Double> generateDataset(int[] id){
