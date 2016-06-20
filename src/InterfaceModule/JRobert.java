@@ -59,6 +59,7 @@ public class JRobert extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setSelected(true);
         jRadioButton1.setText("Mês");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +82,7 @@ public class JRobert extends javax.swing.JFrame {
         jLabel2.setText("Relatório Geral de Parquímetros");
 
         buttonGroup2.add(jRadioButton3);
+        jRadioButton3.setSelected(true);
         jRadioButton3.setText("Dia");
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -270,7 +272,19 @@ public class JRobert extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void generateValueReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateValueReportActionPerformed
-        // TODO add your handling code here:
+        Controller c = Controller.getInstance();
+        int filterType;
+        if(buttonGroup1.isSelected(jRadioButton1.getModel()))
+            filterType = 0;
+        else
+            filterType = 1;
+        String parkingmeter = (String)jComboBox2.getSelectedItem();
+        int[] id = new int[5];
+        for(int i=0; i<parkingmeter.length(); i++)
+            id[i] = Integer.parseInt(String.valueOf(parkingmeter.charAt(i)));
+        
+        jTextArea1.setText(c.generateValueReport(id, filterType));
+        
     }//GEN-LAST:event_generateValueReportActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed

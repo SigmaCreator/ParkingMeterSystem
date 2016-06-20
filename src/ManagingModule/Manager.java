@@ -9,6 +9,7 @@ public class Manager {
     private static Manager instance;
     private ReportCreator reportCreator = ReportCreator.getInstance();
     private LoggerBank loggerBank = LoggerBank.getInstance();
+    private GraphGenerator graphGenerator = GraphGenerator.getInstance();
     
     protected Manager(){}
     
@@ -18,7 +19,7 @@ public class Manager {
             instance = new Manager();
         return instance;
     }
-    
+    /*
     //@requires info[0] == 1
     //
     //@ensures \result == loggerBank.addLogger((File)info[1])
@@ -47,4 +48,20 @@ public class Manager {
         }
         return o;
     }  
+    */
+    public Object addLogger(Object newLogger) throws InvalidLoggerException, IOException{
+        return loggerBank.addLogger((File)newLogger);
+    }
+    
+    public Object createReport(int filter, int filterType){
+        return reportCreator.createReport(filter, filterType);
+    }
+    
+    public Object createReport(int[] id, int filterType){
+        return reportCreator.createReport(id, filterType);
+    }
+    
+    public Object getGraphDataset(int[] id){
+        return graphGenerator.generateDataset(id);
+    }
 }
