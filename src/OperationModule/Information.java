@@ -1,12 +1,14 @@
 package OperationModule;
 
+import ExceptionModule.NoThatSWrongException;
+import ExceptionModule.NonExistentInformationException;
 import PersistenceModule.InfoDAODerby;
 import ResourceModule.Time;
 
 class Information { //OK!
     
     private static Information instance;
-    private InfoDAO infoDAO;
+    private final InfoDAO infoDAO;
     
     private Time startHour;     //SH
     private Time finishHour;    //FH
@@ -23,13 +25,8 @@ class Information { //OK!
     //@ensures incrementFee == 0
     //@ensures infoDAO      == new InfoDAODerby()
     protected Information(){
-        startHour    = null;
-        finishHour   = null;
-        minTime      = null; 
-        maxTime      = null;  
-        increment    = null;
-        incrementFee = 0;
         infoDAO      = new InfoDAODerby();
+        initialize();
     }
     
     /*@ pure @*/
@@ -45,13 +42,19 @@ class Information { //OK!
         return startHour;
     }
 
-    //@ensures getStartHour() == (Time) startHour
-    //@ensures signals (NullPointerException e) startHour == null
-    public void setStartHour(Object startHour) {
-        if(startHour == null)
-            throw new NullPointerException("Hora de Início está nula");
-        this.startHour = (Time) startHour;
-        infoDAO.set("SH", this.startHour.toString());
+    private void initialize() {
+        String[] aux = ((String)infoDAO.get("SH")).split("h");
+        startHour    = new Time(Integer.parseInt(aux[0]), Integer.parseInt(aux[1].substring(0, 2)));
+        aux = ((String)infoDAO.get("FH")).split("h");
+        finishHour   = new Time(Integer.parseInt(aux[0]), Integer.parseInt(aux[1].substring(0, 2)));
+        aux =((String)infoDAO.get("MinT")).split("h");
+        minTime      = new Time(Integer.parseInt(aux[0]), Integer.parseInt(aux[1].substring(0, 2)));
+        aux = ((String)infoDAO.get("MaxT")).split("h");
+        maxTime      = new Time(Integer.parseInt(aux[0]), Integer.parseInt(aux[1].substring(0, 2)));
+        aux = ((String)infoDAO.get("IC")).split("h");
+        increment    = new Time(Integer.parseInt(aux[0]), Integer.parseInt(aux[1].substring(0, 2)));
+        int ic = Integer.parseInt((String)infoDAO.get("ICF"));
+        incrementFee = ic;
     }
 
     /*@ pure @*/
@@ -59,27 +62,9 @@ class Information { //OK!
         return finishHour;
     }
 
-    //@ensures getFinishHour() == (Time) finishHour
-    //@ensures signals (NullPointerException e) finishHour == null
-    public void setFinishHour(Object finishHour) {
-        if(finishHour == null)
-            throw new NullPointerException("Hora de Término está nula");
-        this.finishHour = (Time) finishHour;
-        infoDAO.set("FH", this.finishHour.toString());
-    }
-
     /*@ pure @*/
     public Time getMinTime() {
         return minTime;
-    }
-
-    //@ensures getMinTime() == (Time) minTime
-    //@ensures signals (NullPointerException e) minTime == null
-    public void setMinTime(Object minTime) {
-        if(minTime == null)
-            throw new NullPointerException("Tempo mínimo está nulo");
-        this.minTime = (Time) minTime;
-        infoDAO.set("MinT", this.minTime.toString());
     }
 
     /*@ pure @*/
@@ -87,41 +72,14 @@ class Information { //OK!
         return maxTime;
     }
 
-    //@ensures getMaxTime() == (Time) maxTime
-    //@ensures signals (NullPointerException e) maxTime == null
-    public void setMaxTime(Object maxTime) {
-        if(maxTime == null)
-            throw new NullPointerException("Tempo máximo está nulo");
-        this.maxTime = (Time) maxTime;
-        infoDAO.set("MaxT", this.maxTime.toString());
-    }
-
     /*@ pure @*/
     public Time getIncrement() {
         return increment;
-    }
-
-    //@ensures getIncrement() == (Time) increment
-    //@ensures signals (NullPointerException e) increment == null
-    public void setIncrement(Object increment) {
-        if(increment == null)
-            throw new NullPointerException("Incremento está nulo");
-        this.increment = (Time) increment;
-        infoDAO.set("IC", this.increment.toString());
     }
     
     /*@ pure @*/
     public int getIncrementFee() {
         return incrementFee;
-    }
-
-    //@ensures getIncrementFee() = incrementFee
-    //@ensures signals (NullPointerException e) incrementFee == null
-    public void setIncrementFee(int incrementFee) {
-        if(incrementFee == 0 || incrementFee < 0)
-            throw new NullPointerException("Taxa de incremento está nula ou é menor que zero");
-        this.incrementFee = incrementFee;
-        infoDAO.set("ICF", this.incrementFee);
     }
     
 }

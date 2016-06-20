@@ -16,7 +16,7 @@ public class InfoDAODerby implements InfoDAO{ //OK
     
     //@ensures keepFile == new File("information.txt")
     public InfoDAODerby(){
-        keepFile = new File("information.txt");
+        keepFile = new File("info.ini");
     }
     
     //@requires aux[0] == label
@@ -38,32 +38,6 @@ public class InfoDAODerby implements InfoDAO{ //OK
         
         throw new NonExistentInformationException("Não existe informação com tal label");
         
-    }
-    
-    public void set(String label, Object value){
-    
-        String arquivoTmp = "ARQUIVO-tmp";
-        try{
-            BufferedWriter writer = new BufferedWriter(new FileWriter(arquivoTmp));
-            BufferedReader reader = new BufferedReader(new FileReader(keepFile));
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String aux[] = line.split(":");
-                if (aux[0].equals(label)) {
-                    line = label+":"+value;
-                }
-                writer.write(line + "\n");
-            }
-
-            writer.close();        
-            reader.close();
-
-            keepFile.delete();
-            new File(arquivoTmp).renameTo(keepFile);
-        }catch(IOException e){
-
-        }
     }
     
 }
