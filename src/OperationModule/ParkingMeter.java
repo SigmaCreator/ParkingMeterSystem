@@ -2,7 +2,7 @@ package OperationModule;
 
 import PersistenceModule.LoggerDAODerby;
 import ResourceModule.Logger;
-import ExceptionModule.IDLengthIsNotEnoughException;
+import ExceptionModule.InvalidIDException;
 import java.util.Arrays;
 
 public class ParkingMeter {
@@ -26,12 +26,16 @@ public class ParkingMeter {
 
     //@ensures getId() == id;
     //@ensures signals (NullPointerException e) id == null;
-    //@ensures signals (IDLengthIsNotEnoughException e) id.length < 5;
-    public void setID(Integer[] id) throws IDLengthIsNotEnoughException {
+    //@ensures signals (InvalidIDException e) id.length < 5;
+    public void setID(Integer[] id) throws InvalidIDException {
         if(id == null)
             throw new NullPointerException("ID está nulo");
         if( id.length < 5 )
-            throw new IDLengthIsNotEnoughException("ID possui menos de 5 digitos");
+            throw new InvalidIDException("ID possui menos de 5 digitos");
+        for(Integer i : id)
+            if( i > 9 || i < 0 )
+                throw new InvalidIDException("Dígito do ID inválido: " + i);
+        
         this.id = id;
     }
 
