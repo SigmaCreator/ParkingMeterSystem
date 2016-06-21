@@ -2,18 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ManagingModule/LoggerBank.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ManagingModule/ReportCreator.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ManagingModule/GraphGenerator.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/InterfaceModule/Controller.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ManagingModule/Report.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/InterfaceModule/JRobert.java</file>
-            <file>file:/C:/Users/Pedro/Documents/NetBeansProjects/ParkingMeterSystem/src/ManagingModule/Manager.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/OperationModule/Payment.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/OperationModule/Bank.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/ExceptionModule/NoThatSWrongException.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/ExceptionModule/InexistentCoinValueException.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/ExceptionModule/InsufficientMoneyException.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/OperationModule/PaymentDAO.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/ResourceModule/Money.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/src/ExceptionModule/NegativeCardFundsException.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ParkingMeterSystem/test/Tests/ParkingMeterTest.java</file>
         </group>
-=======
-        <group/>
->>>>>>> origin/master
     </open-files>
 </project-private>

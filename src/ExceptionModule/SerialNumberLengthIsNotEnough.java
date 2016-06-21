@@ -1,7 +1,7 @@
 
 package ExceptionModule;
 
-public class SerialNumberLengthIsNotEnough extends Exception {
+public class SerialNumberLengthIsNotEnough extends RuntimeException {
 
     public SerialNumberLengthIsNotEnough(String s) {
     }
