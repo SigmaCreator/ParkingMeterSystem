@@ -8,7 +8,7 @@ import java.util.Calendar;
 
 public class Ticket { //OK!
     private Integer[] id;
-    private int[] serialNum;
+    private Integer[] serialNum;
     private String address;
     private Time emission;
     private Time expiration;
@@ -22,7 +22,7 @@ public class Ticket { //OK!
     //@ensures serialNum == serialNumber
     //@ensures emission == new Time(calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE))
     //@ensures expiration == 
-    public Ticket(Object totalIncrement, int[] serialNumber, Integer[] id, String address) throws NoThatSWrongException{
+    public Ticket(Object totalIncrement, Integer[] serialNumber, Integer[] id, String address) throws NoThatSWrongException{
         ticketDAO = new TicketDAODerby();
         calendar = Calendar.getInstance();
         this.id = id;

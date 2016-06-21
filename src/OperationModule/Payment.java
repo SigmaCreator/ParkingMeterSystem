@@ -45,7 +45,7 @@ class Payment { //OK
             case 1: result = bank.deposit( (Object[]) info[2] , change );
                     break;
             
-            case 2: card = new Card((int[]) info[2] , (int) info[3]);                  
+            case 2: card = new Card((Integer[]) info[2] , (int) info[3]);                  
                     result = "Número do Cartão: \n" + card.getSerialNum() + "\n Saldo: " + card.getFunds() + "; \n";
                     card.subFunds(fee);
                     bank.deposit(fee);
