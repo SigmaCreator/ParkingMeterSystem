@@ -1,7 +1,7 @@
 
 package ExceptionModule;
 
-public class InexistentCoinValueException extends Exception {
+public class InexistentCoinValueException extends RuntimeException {
 
     public InexistentCoinValueException(String s) {
     }
