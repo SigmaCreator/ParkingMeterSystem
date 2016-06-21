@@ -1,7 +1,5 @@
 package OperationModule;
 
-import ExceptionModule.NoThatSWrongException;
-import ExceptionModule.NonExistentInformationException;
 import PersistenceModule.InfoDAODerby;
 import ResourceModule.Time;
 
