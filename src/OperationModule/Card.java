@@ -6,7 +6,7 @@ import ExceptionModule.SerialNumberLengthIsNotEnough;
 import ExceptionModule.NotEnoughCardFundsException;
 
 public class Card {    //OK
-    private int[] serialNum;
+    private Integer[] serialNum;
     private int funds;
     private CardDAO cardDAO;
 
@@ -15,7 +15,7 @@ public class Card {    //OK
     //@ensures this.funds == funds
     //@ensures signals (NegativeCardFundsException e) funds < 0
     //@ensures cardDAO == new CardDAODerby()
-    public Card(int[] serialNum, int funds) throws SerialNumberLengthIsNotEnough, NegativeCardFundsException {
+    public Card(Integer[] serialNum, int funds) throws SerialNumberLengthIsNotEnough, NegativeCardFundsException {
         if( serialNum.length < 128 || serialNum.length > 128 )
             throw new SerialNumberLengthIsNotEnough("Número Serial inválido de cartão");
         
@@ -33,7 +33,7 @@ public class Card {    //OK
     }
     
     /*@ pure @*/
-    public int[] getSerialNum() {
+    public Integer[] getSerialNum() {
         return serialNum;
     }
 
