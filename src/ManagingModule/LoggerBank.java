@@ -7,12 +7,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Set;
 
 public class LoggerBank {
     private static LoggerBank instance;
-    private HashMap<Integer[],String> bank;
+    private HashMap<String,String> bank;
     
-    protected LoggerBank(){}
+    protected LoggerBank(){
+        bank = new HashMap<String,String>();
+    }
     
     /*@ pure @*/
     public static LoggerBank getInstance(){
@@ -22,7 +25,7 @@ public class LoggerBank {
     }
 
     /*@ pure @*/
-    public String getLogger(int[] id) {
+    public String getLogger(String id) {
         return bank.get(id);
     }
     
@@ -33,11 +36,8 @@ public class LoggerBank {
         BufferedReader br = new BufferedReader(new FileReader(file));
         StringBuffer sb = new StringBuffer();
         String line = br.readLine();
-        String idString = line.split(":")[1];
-        if(idString.length()!= 5) throw new InvalidLoggerException("Arquivo de registro inválido!");
-        Integer[] id = new Integer[5];
-        for(int i=0; i<5; i++)
-            id[i] = Integer.parseInt(String.valueOf(idString.charAt(i))); 
+        String id = line.split(":")[1];
+        if(id.length()!= 5) throw new InvalidLoggerException("Arquivo de registro inválido!");
         while((line = br.readLine())!=null)
             sb.append("\n").append(line);
         bank.put(id, sb.toString());
@@ -52,4 +52,9 @@ public class LoggerBank {
             sb.append(s).append("\n");
         return sb.toString();
     }
+    
+    public Object getParkingMeterList(){
+        return bank.keySet();
+    }
+    
 }

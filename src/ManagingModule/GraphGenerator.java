@@ -21,7 +21,7 @@ public class GraphGenerator {
         return instance;
     }
     
-    public HashMap<String, Double> generateDataset(int[] id){
+    public HashMap<String, Double> generateDataset(String id){
         String [] log = loggerBank.getLogger(id).split("\n");
         HashMap<String, Double> values = new HashMap<>();
         String month, year, key="";

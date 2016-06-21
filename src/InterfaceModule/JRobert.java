@@ -5,11 +5,25 @@
  */
 package InterfaceModule;
 
+import ExceptionModule.InvalidLoggerException;
+import java.awt.BorderLayout;
+import java.io.File;
+import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Set;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import org.jfree.chart.ChartPanel;
+
 /**
  *
  * @author Pedro
  */
-public class JRobert extends javax.swing.JFrame {
+public class JRobert extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form JRobert
@@ -54,6 +68,7 @@ public class JRobert extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        importLogger = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -102,7 +117,7 @@ public class JRobert extends javax.swing.JFrame {
 
         jLabel3.setText("Gráfico de Arrecadação Anual");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(createParkingMeterList());
 
         generateGraph.setText("Gerar");
         generateGraph.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +130,7 @@ public class JRobert extends javax.swing.JFrame {
 
         jLabel5.setText("Parquímetro");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(createParkingMeterList());
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -137,17 +152,18 @@ public class JRobert extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(generateGraph)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jRadioButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jRadioButton2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addGap(18, 18, 18)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addGap(18, 18, 18)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -185,6 +201,7 @@ public class JRobert extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
@@ -197,6 +214,11 @@ public class JRobert extends javax.swing.JFrame {
         });
 
         cleanTextArea.setText("Novo relatório");
+        cleanTextArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cleanTextAreaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -240,6 +262,16 @@ public class JRobert extends javax.swing.JFrame {
         jTabbedPane1.addTab("Gráfico", jPanel3);
 
         jMenu1.setText("File");
+
+        importLogger.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        importLogger.setText("Import Logger");
+        importLogger.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importLoggerActionPerformed(evt);
+            }
+        });
+        jMenu1.add(importLogger);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -278,11 +310,7 @@ public class JRobert extends javax.swing.JFrame {
             filterType = 0;
         else
             filterType = 1;
-        String parkingmeter = (String)jComboBox2.getSelectedItem();
-        int[] id = new int[5];
-        for(int i=0; i<parkingmeter.length(); i++)
-            id[i] = Integer.parseInt(String.valueOf(parkingmeter.charAt(i)));
-        
+        String id = jComboBox2.getSelectedItem().toString();
         jTextArea1.setText(c.generateValueReport(id, filterType));
         
     }//GEN-LAST:event_generateValueReportActionPerformed
@@ -296,17 +324,60 @@ public class JRobert extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void generateGeneralReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateGeneralReportActionPerformed
-        // TODO add your handling code here:
+        Controller c = Controller.getInstance();
+        int filterType;
+        if(buttonGroup2.isSelected(jRadioButton3.getModel()))
+            filterType = 1;
+        else
+            filterType = 0;
+        int date = Integer.parseInt(jTextField1.getText());
+        jTextArea1.setText(c.generateGeneralReport(date, filterType));
     }//GEN-LAST:event_generateGeneralReportActionPerformed
 
     private void generateGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateGraphActionPerformed
-        // TODO add your handling code here:
+        ChartPanel chartPanel = new ChartPanel(Controller.getInstance().generateGraph(jComboBox1.getSelectedItem().toString()));
+        //jPanel3.add(chartPanel, BorderLayout.NORTH);
+        jTabbedPane1.setComponentAt(1, chartPanel);
     }//GEN-LAST:event_generateGraphActionPerformed
 
     private void exportToFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportToFileActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_exportToFileActionPerformed
 
+    private void importLoggerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importLoggerActionPerformed
+        try {
+            Controller c = Controller.getInstance();
+            File f = fileChooser();    
+            if(f!=null)
+                c.importLogger(f);
+            update(c, null);
+        } catch (InvalidLoggerException | IOException ex) {
+            JOptionPane.showMessageDialog(this, "Arquivo inválido.");
+        }
+    }//GEN-LAST:event_importLoggerActionPerformed
+
+    private void cleanTextAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanTextAreaActionPerformed
+        jTextArea1.setText("");
+    }//GEN-LAST:event_cleanTextAreaActionPerformed
+
+    private File fileChooser(){
+        JFileChooser chooser = new JFileChooser(System.getProperty("user.dir")+"/saves/");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("TXT file", "txt");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(this);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+          return chooser.getSelectedFile();
+	}else return null;
+    }
+    
+    private ComboBoxModel createParkingMeterList(){
+        Controller c = Controller.getInstance();
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        Set<String> set = (Set<String>)c.getParkingMeterList();
+        for(String id: set)
+            model.addElement(id);
+        return model;
+    }
     /**
      * @param args the command line arguments
      */
@@ -350,6 +421,7 @@ public class JRobert extends javax.swing.JFrame {
     private javax.swing.JButton generateGeneralReport;
     private javax.swing.JButton generateGraph;
     private javax.swing.JButton generateValueReport;
+    private javax.swing.JMenuItem importLogger;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -372,4 +444,10 @@ public class JRobert extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+    private javax.swing.JButton closeGraph;
+    @Override
+    public void update(Observable o, Object arg) {
+        jComboBox1.setModel(createParkingMeterList());
+        jComboBox2.setModel(createParkingMeterList());
+    }
 }

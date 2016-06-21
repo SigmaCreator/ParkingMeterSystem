@@ -6,6 +6,7 @@ import ManagingModule.Manager;
 import java.awt.Color;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Observable;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
@@ -13,11 +14,10 @@ import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.title.TextTitle;
-import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
         //TODO ALL
-public class Controller {
-    private Manager manager;
+public class Controller extends Observable{
+    private final Manager manager;
     private static Controller instance;
     
     protected Controller(){
@@ -30,7 +30,11 @@ public class Controller {
         return instance;
     }
     
-    public String generateValueReport(int[] id, int filterType) {
+    public Object getParkingMeterList(){
+        return manager.getAllPartkingMeters();
+    }
+    
+    public String generateValueReport(String id, int filterType) {
         return (String) manager.createReport(id, filterType);
     }
     
@@ -39,10 +43,13 @@ public class Controller {
     }
     
     public String importLogger(Object newLogger) throws InvalidLoggerException, IOException{
-        return (String) manager.addLogger(newLogger);
+        String result = (String) manager.addLogger(newLogger);
+        setChanged();
+        notifyObservers();
+        return result;
     }
     
-    public JFreeChart generateGraph(int[] id){
+    public JFreeChart generateGraph(String id){
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         HashMap<String, Double> hash = (HashMap<String,Double>)manager.getGraphDataset(id);
         for(String date : hash.keySet()){

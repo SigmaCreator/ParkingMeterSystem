@@ -10,8 +10,8 @@ public class Report { // OK
     }
     
     public void addLog(String logger){
-        report.append("\n");
         report.append(logger);
+        report.append("\n");
     }
     
     /*@ pure @*/

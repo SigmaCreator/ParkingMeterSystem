@@ -7,9 +7,10 @@ import java.io.IOException;
 
 public class Manager {
     private static Manager instance;
-    private ReportCreator reportCreator = ReportCreator.getInstance();
-    private LoggerBank loggerBank = LoggerBank.getInstance();
-    private GraphGenerator graphGenerator = GraphGenerator.getInstance();
+    private final ReportCreator reportCreator = ReportCreator.getInstance();
+    private final LoggerBank loggerBank = LoggerBank.getInstance();
+    private final GraphGenerator graphGenerator = GraphGenerator.getInstance();
+    
     
     protected Manager(){}
     
@@ -57,11 +58,15 @@ public class Manager {
         return reportCreator.createReport(filter, filterType);
     }
     
-    public Object createReport(int[] id, int filterType){
+    public Object createReport(String id, int filterType){
         return reportCreator.createReport(id, filterType);
     }
     
-    public Object getGraphDataset(int[] id){
+    public Object getGraphDataset(String id){
         return graphGenerator.generateDataset(id);
+    }
+    
+    public Object getAllPartkingMeters(){
+        return loggerBank.getParkingMeterList();
     }
 }
