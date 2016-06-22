@@ -1,5 +1,6 @@
 package OperationModule;
 
+import ExceptionModule.InexistentCoinValueException;
 import PersistenceModule.BankDAODerby;
 import ResourceModule.Money;
 
@@ -16,7 +17,7 @@ public class Bank { // OK
     //@ensures funds[4] == new Money(5,0);
     //@ensures cardFunds == 0;
     //@ensures bankDAO == new BankDAODerby();
-    public Bank(){ 
+    public Bank() throws InexistentCoinValueException{ 
         funds = new Money[5];
         funds[0] = new Money(100,0);
         funds[1] = new Money(50,0);
@@ -30,7 +31,7 @@ public class Bank { // OK
     }
     
     //@ensures \result == result
-    public Object[] deposit(Object[] money, int change) {
+    public Object[] deposit(Object[] money, int change) throws InexistentCoinValueException {
         
         Object[] result = new Object[3];
         
@@ -66,7 +67,7 @@ public class Bank { // OK
     
     //@ensures aux >= 0 || aux <= change
     //@ensures \result = debit
-    private Money[] debit(int change){
+    private Money[] debit(int change) throws InexistentCoinValueException{
         int aux = change;
         Money[] debit = new Money[5];
         

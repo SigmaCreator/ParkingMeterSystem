@@ -1,5 +1,6 @@
 package OperationModule;
 
+import ExceptionModule.InexistentCoinValueException;
 import PersistenceModule.PaymentDAODerby;
 import ResourceModule.Time;
 import ResourceModule.Money;
@@ -15,7 +16,7 @@ class Payment { //OK
     //@ensures paymentDAO == new PaymentDAODerby()
     //@ensures bank == new Bank() 
     //@ensures card == null
-    public Payment(){ 
+    public Payment() throws InexistentCoinValueException{ 
         paymentDAO = new PaymentDAODerby();
         bank = new Bank(); 
         card = null;
