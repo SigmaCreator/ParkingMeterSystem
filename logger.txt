@@ -1,0 +1,180 @@
+ID:01234
+Endereço: PUCRS
+
+Log_Date:5-22-2016 0:53:21
+==============================
+Não foi possível realizar o pagamento
+Causa do erro:Saldo insuficiente
+ID:01234
+Endereço: PUCRS
+
+Log_Date:5-22-2016 0:53:21
+==============================
+Não foi possível realizar o pagamento
+Causa do erro:Número Serial inválido de cartão
+ID:01234
+Endereço: PUCRS
+
+Log_Date:5-22-2016 0:53:21
+==============================
+Não foi possível realizar o pagamento
+Causa do erro:Número Serial inválido de cartão
+ID:01234
+Endereço: PUCRS
+
+Log_Date:5-22-2016 0:53:21
+==============================
+Não foi possível realizar o pagamento
+Causa do erro:Cartão com saldo negativo
+ID:01234
+Endereço: PUCRS
+
+Log Date 5-22-2016 0:53:21
+==============================
+
+Tarifa:25
+Pagamento em dinheiro
+Valor arrecadado:25
+Informações do Ticket:
+____________________________________________________
+
+| ID do Parquímetro :01234
+
+| Endereço do Parquímetro :PUCRS
+
+| Número Serial do Ticket: 12345
+
+| Horário de emissão :0h53min
+
+| Horário de validade :1h3min
+
+____________________________________________________
+
+ID:01234
+Endereço: PUCRS
+
+Log_Date:5-22-2016 0:53:21
+==============================
+Não foi possível realizar o pagamento
+Causa do erro:Ação não existente
+ID:01234
+Endereço: PUCRS
+
+Log_Date:5-22-2016 0:53:21
+==============================
+Não foi possível realizar o pagamento
+Causa do erro:Valor insuficiente
+ID:01234
+Endereço: PUCRS
+
+Log Date 5-22-2016 0:53:21
+==============================
+
+Tarifa:25
+Pagamento em dinheiro
+Valor arrecadado:25
+Informações do Ticket:
+____________________________________________________
+
+| ID do Parquímetro :01234
+
+| Endereço do Parquímetro :PUCRS
+
+| Número Serial do Ticket: 12345
+
+| Horário de emissão :0h53min
+
+| Horário de validade :1h3min
+
+____________________________________________________
+
+ID:01234
+Endereço: PUCRS
+
+Log_Date:6-22-2016 1:6:53
+==============================
+Não foi possível realizar o pagamento
+Causa do erro:Saldo insuficiente
+ID:01234
+Endereço: PUCRS
+
+Log_Date:6-22-2016 1:6:53
+==============================
+Não foi possível realizar o pagamento
+Causa do erro:Número Serial inválido de cartão
+ID:01234
+Endereço: PUCRS
+
+Log_Date:6-22-2016 1:6:53
+==============================
+Não foi possível realizar o pagamento
+Causa do erro:Número Serial inválido de cartão
+ID:01234
+Endereço: PUCRS
+
+Log_Date:6-22-2016 1:6:53
+==============================
+Não foi possível realizar o pagamento
+Causa do erro:Cartão com saldo negativo
+ID:01234
+Endereço: PUCRS
+
+Log Date 6-22-2016 1:6:53
+==============================
+
+Tarifa:25
+Pagamento em dinheiro
+Valor arrecadado:25
+Informações do Ticket:
+____________________________________________________
+
+| ID do Parquímetro :01234
+
+| Endereço do Parquímetro :PUCRS
+
+| Número Serial do Ticket: 12345
+
+| Horário de emissão :1h6min
+
+| Horário de validade :1h16min
+
+____________________________________________________
+
+ID:01234
+Endereço: PUCRS
+
+Log_Date:6-22-2016 1:6:53
+==============================
+Não foi possível realizar o pagamento
+Causa do erro:Ação não existente
+ID:01234
+Endereço: PUCRS
+
+Log_Date:6-22-2016 1:6:53
+==============================
+Não foi possível realizar o pagamento
+Causa do erro:Valor insuficiente
+ID:01234
+Endereço: PUCRS
+
+Log Date 6-22-2016 1:6:53
+==============================
+
+Tarifa:25
+Pagamento em dinheiro
+Valor arrecadado:25
+Informações do Ticket:
+____________________________________________________
+
+| ID do Parquímetro :01234
+
+| Endereço do Parquímetro :PUCRS
+
+| Número Serial do Ticket: 12345
+
+| Horário de emissão :1h6min
+
+| Horário de validade :1h16min
+
+____________________________________________________
+

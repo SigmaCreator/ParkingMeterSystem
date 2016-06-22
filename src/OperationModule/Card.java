@@ -2,7 +2,7 @@ package OperationModule;
 
 import PersistenceModule.CardDAODerby;
 import ExceptionModule.NegativeCardFundsException;
-import ExceptionModule.SerialNumberLengthIsNotEnough;
+import ExceptionModule.InvalidSerialNumberException;
 import ExceptionModule.NotEnoughCardFundsException;
 
 public class Card {    //OK
@@ -11,13 +11,16 @@ public class Card {    //OK
     private CardDAO cardDAO;
 
     //@ensures this.serialNum == serialNum
-    //@ensures signals (SerialNumberLengthIsNotEnough e) seriaNum.length != 128
+    //@ensures signals (InvalidSerialNumberException e) seriaNum.length != 128
     //@ensures this.funds == funds
     //@ensures signals (NegativeCardFundsException e) funds < 0
     //@ensures cardDAO == new CardDAODerby()
-    public Card(Integer[] serialNum, int funds) throws SerialNumberLengthIsNotEnough, NegativeCardFundsException {
+    public Card(Integer[] serialNum, int funds) throws InvalidSerialNumberException, NegativeCardFundsException {
         if( serialNum.length < 128 || serialNum.length > 128 )
-            throw new SerialNumberLengthIsNotEnough("Número Serial inválido de cartão");
+            throw new InvalidSerialNumberException("Número Serial inválido de cartão");
+        
+        for(Integer i : serialNum)
+            if(i<0 || i>9) throw new InvalidSerialNumberException("Número Serial inválido de cartão");
         
         if( funds < 0 )
             throw new NegativeCardFundsException("Cartão com saldo negativo");

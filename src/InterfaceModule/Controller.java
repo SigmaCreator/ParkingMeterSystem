@@ -58,10 +58,9 @@ public class Controller extends Observable{
         }
         
         JFreeChart chart = ChartFactory.createBarChart(
-                "Performance: JFreeSVG vs Batik", null /* x-axis label*/, 
-                "Milliseconds" /* y-axis label */, dataset);
-        chart.addSubtitle(new TextTitle("Time to generate 1000 charts in SVG " 
-               + "format (lower bars = better performance)"));
+                "Parquímetro: "+id, null /* x-axis label*/, 
+                "Centavos" /* y-axis label */, dataset);
+        chart.addSubtitle(new TextTitle("Arrecadacao anual mês a mês "));
         chart.setBackgroundPaint(Color.white);
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
         

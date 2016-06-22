@@ -24,7 +24,7 @@ public class PaymentDAODerby implements PaymentDAO{
         
         try{
         BufferedWriter writer = new BufferedWriter(new FileWriter(keepFile));
-        StringBuffer s = null;
+        StringBuffer s = new StringBuffer();
         if((int)info[0]==1){ s.append(1).append(";");}
         else {
             for(int i: (int[])info[2])

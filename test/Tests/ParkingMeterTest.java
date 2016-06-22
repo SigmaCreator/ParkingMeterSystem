@@ -7,13 +7,14 @@ import ExceptionModule.NegativeCardFundsException;
 import ExceptionModule.NoThatSWrongException;
 import ExceptionModule.NonExistentActionException;
 import ExceptionModule.NotEnoughCardFundsException;
-import ExceptionModule.SerialNumberLengthIsNotEnough;
+import ExceptionModule.InvalidSerialNumberException;
 import OperationModule.ParkingMeter;
 import ResourceModule.Money;
 import ResourceModule.Time;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
 public class ParkingMeterTest{
 
@@ -21,7 +22,11 @@ public class ParkingMeterTest{
 
      @Before
      public void setUp(){
-          park = new ParkingMeter();
+          Integer[] id = new Integer[5];
+          for(int i = 0; i < 5; i++){
+               id[i] = i;
+          }
+          park = new ParkingMeter(id, "PUCRS");
      }
 
      //Testes com setID
@@ -97,7 +102,10 @@ public class ParkingMeterTest{
           Object[] info = new Object[5];
           info[0] = 1;
           info[1] = new Time(0,10);
-          info[2] = new Money(100,1);
+          Money m =  new Money(100, 1);
+          Money[] v = new Money[1];
+          v[0] = m;
+          info[2] = v;
           info[3] = 0;
           Integer[] vet = {1,2,3,4,5};
           info[4] = vet;
@@ -111,7 +119,10 @@ public class ParkingMeterTest{
           Object[] info = new Object[5];
           info[0] = 3;
           info[1] = new Time(0,10);
-          info[2] = new Money(100,1);
+          Money m =  new Money(100, 1);
+          Money[] v = new Money[1];
+          v[0] = m;
+          info[2] = v;
           info[3] = 0;
           Integer[] vet = {1,2,3,4,5};
           info[4] = vet;
@@ -120,9 +131,18 @@ public class ParkingMeterTest{
 
      //Testes de totalIncrementTime
 
-     @Test
-     public void testGetFee(){
-
+     @Test 
+     public void testGetFee() throws Exception{
+         Object[] info = new Object[5];
+         info[0] = 1;
+         info[1] = new Time(0,10);
+         Money m = new Money(100,1);
+         Money[] mv = { m };
+         info[2] = mv; 
+         info[3] = 0;
+         Integer[] vet = {1,2,3,4,5};
+         info[4] = vet;
+         park.act(info);
      }
 
      //Testes de serialNumberOrValue
@@ -132,21 +152,24 @@ public class ParkingMeterTest{
           Object[] info = new Object[5];
           info[0] = 1;
           info[1] = new Time(0,50);
-          info[2] = new Money(5,1);
+          Money m =  new Money(5, 1);
+          Money[] v = new Money[1];
+          v[0] = m;
+          info[2] = v;
           info[3] = 0;
           Integer[] vet = {1,2,3,4,5};
           info[4] = vet;
           park.act(info);
      }
 
-     @Test(expected = SerialNumberLengthIsNotEnough.class)
+     @Test(expected = InvalidSerialNumberException.class)
      public void testSerialNumLengthTooShort() throws Exception{
           Object[] info = new Object[5];
           info[0] = 2;
           info[1] = new Time(0,50);
           Integer[] x = new Integer[123];
           for(int i = 0; i < 123; i++)
-               x[i] = i;
+               x[i] = i%9;
           info[2] = x;
           info[3] = 100;
           Integer[] vet = {1,2,3,4,5};
@@ -154,14 +177,14 @@ public class ParkingMeterTest{
           park.act(info);
      }
 
-     @Test(expected = SerialNumberLengthIsNotEnough.class)
+     @Test(expected = InvalidSerialNumberException.class)
      public void testSerialNumLengthTooBig() throws Exception{
           Object[] info = new Object[5];
           info[0] = 2;
           info[1] = new Time(0,50);
           Integer[] x = new Integer[130];
           for(int i = 0; i < 130; i++)
-               x[i] = i;
+               x[i] = i%9;
           info[2] = x;
           info[3] = 100;
           Integer[] vet = {1,2,3,4,5};
@@ -178,7 +201,7 @@ public class ParkingMeterTest{
           info[1] = new Time(0,50);
           Integer[] x = new Integer[128];
           for(int i = 0; i < 128; i++)
-               x[i] = i;
+               x[i] = i%9;
           info[2] = x;
           info[3] = 0;
           Integer[] vet = {1,2,3,4,5};
@@ -193,24 +216,10 @@ public class ParkingMeterTest{
           info[1] = new Time(0,50);
           Integer[] x = new Integer[128];
           for(int i = 0; i < 128; i++)
-               x[i] = i;
+               x[i] = i%9;
           info[2] = x;
           info[3] = -25;
           Integer[] vet = {1,2,3,4,5};
-          info[4] = vet;
-          park.act(info);
-     }
-
-     //Testes de ticketSerialNumber
-
-     //@Test(expected =  )
-     public void testTicketNumInvalid() throws Exception{
-          Object[] info = new Object[5];
-          info[0] = 1;
-          info[1] = new Time(0,10);
-          info[2] = new Money(100,1);
-          info[3] = 0;
-          Integer[] vet = {1,2,3,4};
           info[4] = vet;
           park.act(info);
      }
@@ -222,7 +231,10 @@ public class ParkingMeterTest{
           Object[] info = new Object[5];
           info[0] = 1;
           info[1] = new Time(0,10);
-          info[2] = new Money(12,1);
+          Money m =  new Money(12, 1);
+          Money[] v = new Money[1];
+          v[0] = m;
+          info[2] = v;
           info[3] = 0;
           Integer[] vet = {1,2,3,4,5};
           info[4] = vet;
@@ -236,7 +248,10 @@ public class ParkingMeterTest{
           Object[] info = new Object[5];
           info[0] = 1;
           info[1] = new Time(-5,0);
-          info[2] = new Money(100,1);
+          Money m =  new Money(100, 1);
+          Money[] v = new Money[1];
+          v[0] = m;
+          info[2] = v;
           info[3] = 0;
           Integer[] vet = {1,2,3,4,5};
           info[4] = vet;
@@ -248,13 +263,13 @@ public class ParkingMeterTest{
           Object[] info = new Object[5];
           info[0] = 1;
           info[1] = new Time(0,-10);
-          info[2] = new Money(100,1);
+          Money m =  new Money(100, 1);
+          Money[] v = new Money[1];
+          v[0] = m;
+          info[2] = v;
           info[3] = 0;
           Integer[] vet = {1,2,3,4,5};
           info[4] = vet;
           park.act(info);
      }
-
-
-
 }

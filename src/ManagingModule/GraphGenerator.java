@@ -28,7 +28,7 @@ public class GraphGenerator {
         for(String line : log){
             if(line.split(":")[0].equalsIgnoreCase("log_date")){
                 month = line.split(":")[1].split("-")[0];
-                year = line.split(":")[1].split("-")[2];
+                year = line.split(":")[1].split("-")[2].split(" ")[0];
                 key = year+"-"+month;
             }
             if(line.split(":")[0].equalsIgnoreCase("Valor Arrecadado")) {

@@ -42,30 +42,30 @@ public class Ticket { //OK!
     //@ensures \result == ticket.toString()
     public String print() {
         
-        StringBuffer ticket = null;
+        StringBuffer ticket = new StringBuffer();
         
-        StringBuffer aux = null;
+        StringBuffer aux = new StringBuffer();
         
         for(Integer i : id) aux.append(i);
         
         ticket.append("____________________________________________________\n");
-        
+        ticket.append(System.lineSeparator());
         ticket.append("| ID do Parquímetro :").append(aux).append("\n");
-        
+        ticket.append(System.lineSeparator());
         ticket.append("| Endereço do Parquímetro :").append(address).append("\n");
-        
-        aux = null;
+        ticket.append(System.lineSeparator());
+        aux = new StringBuffer();
         
         for(int i : serialNum)  aux.append(i);
         
         ticket.append("| Número Serial do Ticket: ").append(aux).append("\n");
-        
+        ticket.append(System.lineSeparator());
         ticket.append("| Horário de emissão :").append(emission.toString()).append("\n");
-        
+        ticket.append(System.lineSeparator());
         ticket.append("| Horário de validade :").append(expiration.toString()).append("\n");
-        
+        ticket.append(System.lineSeparator());
         ticket.append("____________________________________________________\n");
-        
+        ticket.append(System.lineSeparator());
         return ticket.toString();
     }
     

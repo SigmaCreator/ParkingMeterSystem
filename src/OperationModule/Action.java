@@ -14,9 +14,14 @@ public class Action {
     public Action(){
         ticket = null;
         payment = new Payment();
-        information = new Information();
+        information = Information.getInstance();
     }
 
+    public int getPaidValue(Object coins, int change){
+        return payment.getPaidValue(coins, change);
+    }
+    
+    
     //@ensures \result == (new Ticket(time, (int[]) serialNumber, id, address)).print()
     public Object createTicket(Object time, Object serialNumber, Integer[] id, String address) throws NoThatSWrongException{
         ticket = new Ticket(time, (Integer[]) serialNumber, id, address);

@@ -14,20 +14,23 @@ public class InfoDAODerby implements InfoDAO{ //OK
     
     //@ensures keepFile == new File("information.txt")
     public InfoDAODerby(){
-        keepFile = new File("info.ini");
+        keepFile = new File("info.txt");
     }
     
     //@requires aux[0] == label
     //
     //@ensures \result == aux
     public Object get(String label) throws NonExistentInformationException {
+        
         try{
             FileReader fr = new FileReader(keepFile);
             BufferedReader br = new BufferedReader(fr);
-            String line = br.readLine();
-            while(line!=null){
+            String line; 
+            while((line=br.readLine())!=null){
                 String aux[] = line.split(":");
-                if(aux[0].equals(label)) return aux;
+                if(aux[0].equalsIgnoreCase(label)){
+                    return aux[1];
+                }
             }
             
             br.close();

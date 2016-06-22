@@ -1,0 +1,6 @@
+SH:8h30min
+FH:18h30min
+MinT:0h10min
+MaxT:10h00min
+IC:0h10min
+ICF:25

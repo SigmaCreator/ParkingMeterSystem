@@ -14,9 +14,15 @@ public class ParkingMeter {
 
     //@ensures logger == new Logger("ID: "+Arrays.toString(id) +"\nEndereço: "+address+"\n");
     //@ensures logDAO == new LoggerDAODerby();
-    public ParkingMeter() { 
-        logger = new Logger("ID: "+Arrays.toString(id) +"\nEndereço: "+address+"\n");
+    public ParkingMeter(Integer[] id, String address) {
+        this.address = address;
+        this.id = id;
+        String idString="";
+        for(int i : id)
+            idString+=i;
+        logger = new Logger("ID:"+idString +"\nEndereço: "+address+"\n");
         logDAO = new LoggerDAODerby();
+        action = new Action();
     }
 
     /*@ pure @*/
@@ -49,7 +55,7 @@ public class ParkingMeter {
     public void setAddress(String address) {
         if(address == null)
             throw new NullPointerException("Endereço está nulo");
-        this.address = address; 
+        this.address = address;
     }
 
     /*@ pure @*/
@@ -69,7 +75,7 @@ public class ParkingMeter {
         for(Object o : info) if(o == null) throw new NullPointerException("Faltam informações");
         
         Object[] result  = new Object[2];
-        StringBuilder log = new StringBuilder();
+        StringBuffer log = new StringBuffer();
         
         
         try{
@@ -81,33 +87,47 @@ public class ParkingMeter {
             Object ticketSerialNumber  = info[4];
                 
             int fee = action.getFee(totalIncrementTime);
-            log.append("\n Tarifa: ").append(fee).append("\n");
+            
+            log.append(System.lineSeparator());
+            log.append("Tarifa:").append(fee);
+            log.append(System.lineSeparator());
             int change=0, paid=0;
             
             if( (int) definePaymentType == 1 ){
                 change = action.getChange(serialNumberOrValue,fee);
-                paid = ((int)info[2])-change;
+                paid = action.getPaidValue(info[2], change);
             }else {
                 change = 0;
                 paid = fee;
             }
             result[0] = action.getPayment().defineAction(info,fee,change);
                     
-            if( (int) definePaymentType == 1 )
-                log.append("Pagamento em dinheiro \n");
-            else {
-                log.append("Pagamento em cartão \n");
-                log.append((String) result[0]).append("\n");
+            if( (int) definePaymentType == 1 ){
+                log.append("Pagamento em dinheiro");
+                log.append(System.lineSeparator());
+            }else {
+                log.append("Pagamento em cartão");
+                    
+                log.append(System.lineSeparator());
+                log.append((String) result[0]);
+                    
+                log.append(System.lineSeparator());
             }    
             
-            log.append("Valor arrecadado: ").append(paid);
+            log.append("Valor arrecadado:").append(paid);
                     
             result[1] = action.createTicket(totalIncrementTime,ticketSerialNumber,id,address);
-            log.append("\n Informações do Ticket: \n");
-            log.append(((Ticket) result[1]).print());
+            
+            log.append(System.lineSeparator());
+            log.append("Informações do Ticket:");
+            
+            log.append(System.lineSeparator());
+            log.append(result[1]);
             action.updateDAO(info, fee, change);
-        } catch(Exception e) { 
-            logger.update(e); 
+        } catch(Throwable e) { 
+            logger.update((Exception) e);
+            logDAO.addLog(logger);
+            throw e;
         }
         
         logger.update(log.toString());

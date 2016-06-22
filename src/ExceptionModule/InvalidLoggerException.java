@@ -10,8 +10,7 @@ package ExceptionModule;
  * @author Pedro
  */
 public class InvalidLoggerException extends Exception{
-    String msg;
     public InvalidLoggerException(String message){
-        msg = message;
+        super(message);
     }
 }

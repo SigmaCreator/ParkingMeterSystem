@@ -45,7 +45,7 @@ public class Time {
     
     @Override
     public String toString(){
-        StringBuffer time = null;
+        StringBuffer time = new StringBuffer();
         
         time.append(hour + "h");
         

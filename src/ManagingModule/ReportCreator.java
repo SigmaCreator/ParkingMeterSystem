@@ -43,7 +43,7 @@ public class ReportCreator {
         for(String line: log){
             if(line.split(":")[0].equalsIgnoreCase("log_date")){
                 date = line.split(":")[1].split("-");
-                key = filterType==0 ? date[0]+"-"+date[2] : date[2];
+                key = filterType==0 ? date[0]+"-"+date[2].split(" ")[0] : date[2].split(" ")[0];
             }else if(line.split(":")[0].equalsIgnoreCase("Valor arrecadado")){
                 if(!data.containsKey(key))
                     data.put(key, Integer.parseInt(line.split(":")[1]));

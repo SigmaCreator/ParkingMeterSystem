@@ -6,7 +6,10 @@ import ResourceModule.Time;
 import ResourceModule.Money;
 
 import ExceptionModule.InsufficientMoneyException;
+import ExceptionModule.NegativeCardFundsException;
 import ExceptionModule.NonExistentActionException;
+import ExceptionModule.NotEnoughCardFundsException;
+import ExceptionModule.InvalidSerialNumberException;
 
 class Payment { //OK
     Bank bank;
@@ -22,6 +25,15 @@ class Payment { //OK
         card = null;
     }
     
+    public int getPaidValue(Object coins, int change){
+        int result=0;
+        for(Money c: (Money[])coins)
+            result+=c.getCoin()*c.getQuantity();
+        return result-change;
+    }
+    
+    
+    
     //@requires info[0] == 1
     //
     //@ensures bank.getFunds == \old(bank.getFundas) + 
@@ -35,7 +47,7 @@ class Payment { //OK
     //@ensures \result = result
     //@also
     //@ensures signals (NonExistentActionException e) info[0] != 1 && info[0] != 2
-    public Object defineAction(Object[] info, int fee, int change) throws Exception {
+    public Object defineAction(Object[] info, int fee, int change) throws InvalidSerialNumberException, NotEnoughCardFundsException, NegativeCardFundsException {
         // 1 - pay with money
         // 2 - pay with card 
         // 3 - check funds

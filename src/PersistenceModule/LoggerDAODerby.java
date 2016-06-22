@@ -20,7 +20,7 @@ public class LoggerDAODerby implements LoggerDAO{
     @Override
     public void addLog(Logger log) {
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(keepFile));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(keepFile, true));
             bw.write(log.toString());
             bw.close();
         } catch (IOException ex) {
