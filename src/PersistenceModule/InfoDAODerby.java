@@ -31,6 +31,7 @@ public class InfoDAODerby implements InfoDAO{ //OK
             }
             
             br.close();
+            fr.close();
         } catch (IOException ex) {       
         }
         

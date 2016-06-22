@@ -7,7 +7,9 @@ package InterfaceModule;
 
 import ExceptionModule.InvalidLoggerException;
 import java.awt.BorderLayout;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
@@ -335,24 +337,52 @@ public class JRobert extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_generateGeneralReportActionPerformed
 
     private void generateGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateGraphActionPerformed
-        ChartPanel chartPanel = new ChartPanel(Controller.getInstance().generateGraph(jComboBox1.getSelectedItem().toString()));
+        Object o = jComboBox1.getSelectedItem();
+        ChartPanel chartPanel = null;
+        if(o!=null){
+            String id = o.toString();
+            chartPanel = new ChartPanel(Controller.getInstance().generateGraph(id));
+        }else
+            JOptionPane.showMessageDialog(this, "Nenhum parquímetro selecionado \n importe um Logger para realizar operação");
         //jPanel3.add(chartPanel, BorderLayout.NORTH);
         jTabbedPane1.setComponentAt(1, chartPanel);
+        jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_generateGraphActionPerformed
 
     private void exportToFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportToFileActionPerformed
-        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser(System.getProperty("user.dir")+"/saves/");
+        chooser.setDialogTitle("Salve o relatório");
+        File fileToSave;
+        int selection = chooser.showSaveDialog(this);
+        if(selection == JFileChooser.APPROVE_OPTION)
+            fileToSave = chooser.getSelectedFile();
+        else return;
+        
+        try{
+            FileWriter fr = new FileWriter(fileToSave);
+            BufferedWriter bw = new BufferedWriter(fr);
+            String[] text = jTextArea1.getText().split("\n");
+            
+            for(String s: text){
+                bw.write(s);
+                bw.newLine();
+            }
+            bw.close();
+            fr.close();
+        }catch(IOException e){
+            
+        }
     }//GEN-LAST:event_exportToFileActionPerformed
 
     private void importLoggerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importLoggerActionPerformed
         try {
             Controller c = Controller.getInstance();
-            File f = fileChooser();    
+            File f = loadFile();    
             if(f!=null)
                 c.importLogger(f);
             update(c, null);
         } catch (InvalidLoggerException | IOException ex) {
-            JOptionPane.showMessageDialog(this, "Arquivo inválido.");
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_importLoggerActionPerformed
 
@@ -360,7 +390,7 @@ public class JRobert extends javax.swing.JFrame implements Observer {
         jTextArea1.setText("");
     }//GEN-LAST:event_cleanTextAreaActionPerformed
 
-    private File fileChooser(){
+    private File loadFile(){
         JFileChooser chooser = new JFileChooser(System.getProperty("user.dir")+"/saves/");
         FileNameExtensionFilter filter = new FileNameExtensionFilter("TXT file", "txt");
         chooser.setFileFilter(filter);

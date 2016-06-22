@@ -36,6 +36,7 @@ public class LoggerBank {
         BufferedReader br = new BufferedReader(new FileReader(file));
         StringBuffer sb = new StringBuffer();
         String line = br.readLine();
+        if(!line.contains(":")) throw new InvalidLoggerException("Arquivo de registro inválido!");
         String id = line.split(":")[1];
         if(id.length()!= 5) throw new InvalidLoggerException("Arquivo de registro inválido!");
         while((line = br.readLine())!=null)

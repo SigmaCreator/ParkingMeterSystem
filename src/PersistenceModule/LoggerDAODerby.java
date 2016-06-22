@@ -22,6 +22,7 @@ public class LoggerDAODerby implements LoggerDAO{
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(keepFile));
             bw.write(log.toString());
+            bw.close();
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(LoggerDAODerby.class.getName()).log(Level.SEVERE, null, ex);
         }
