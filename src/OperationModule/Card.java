@@ -10,11 +10,11 @@ public class Card {    //OK
     private int funds;
     private CardDAO cardDAO;
 
-    //@ensures this.serialNum == serialNum
-    //@ensures signals (InvalidSerialNumberException e) seriaNum.length != 128
-    //@ensures this.funds == funds
-    //@ensures signals (NegativeCardFundsException e) funds < 0
-    //@ensures cardDAO == new CardDAODerby()
+    //@ensures this.serialNum == serialNum;
+    //@ensures signals (InvalidSerialNumberException e) seriaNum.length != 128;
+    //@ensures this.funds == funds;
+    //@ensures signals (NegativeCardFundsException e) funds < 0;
+    //@ensures cardDAO == new CardDAODerby();
     public Card(Integer[] serialNum, int funds) throws InvalidSerialNumberException, NegativeCardFundsException {
         if( serialNum.length < 128 || serialNum.length > 128 )
             throw new InvalidSerialNumberException("Número Serial inválido de cartão");
@@ -40,8 +40,8 @@ public class Card {    //OK
         return serialNum;
     }
 
-    //@ensures getFunds() == \old(getFunds) - value
-    //@ensures signals (NotEnoughCardFundsException e) (funds - value) < 0
+    //@ensures getFunds() == \old(getFunds) - value;
+    //@ensures signals (NotEnoughCardFundsException e) (funds - value) < 0;
     public void subFunds(int value) throws NotEnoughCardFundsException {
         
         if ( (funds - value) < 0 )
@@ -50,7 +50,7 @@ public class Card {    //OK
         funds = funds - value;
     }
     
-    //@ensures \result == s.toString()
+    //@ensures \result == s.toString();
     public String print() {
         StringBuffer s = null;
         
@@ -78,7 +78,7 @@ public class Card {    //OK
     }
 
     /*@ pure @*/
-    public void updateDAO(double fee) {
+    public void updateDAO(int fee) {
         cardDAO.addCard(this, fee);
     }
     

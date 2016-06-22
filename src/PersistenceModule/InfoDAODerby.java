@@ -17,9 +17,8 @@ public class InfoDAODerby implements InfoDAO{ //OK
         keepFile = new File("info.txt");
     }
     
-    //@requires aux[0] == label
-    //
-    //@ensures \result == aux
+   
+    //@ensures \result != null || signal(NonExistentInformationException e);
     public Object get(String label) throws NonExistentInformationException {
         
         try{

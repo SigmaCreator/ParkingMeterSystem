@@ -39,7 +39,7 @@ public class Ticket { //OK!
         ticketDAO.add(this);
     }
     
-    //@ensures \result == ticket.toString()
+    /*@ pure @*/
     public String print() {
         
         StringBuffer ticket = new StringBuffer();

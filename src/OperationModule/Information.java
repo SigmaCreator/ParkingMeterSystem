@@ -40,6 +40,7 @@ class Information { //OK!
         return startHour;
     }
 
+    //@ensures 
     private void initialize() {
         String[] aux = ((String)infoDAO.get("SH")).split("h");
         startHour    = new Time(Integer.parseInt(aux[0]), Integer.parseInt(aux[1].substring(0, 2)));

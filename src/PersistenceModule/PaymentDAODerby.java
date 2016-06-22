@@ -19,8 +19,8 @@ public class PaymentDAODerby implements PaymentDAO{
         keepFile = new File("payments.txt");
     }
     
-    @Override
-    public void addPayment(Object info[], double fee, double change) {
+    //@requires info != null;
+    public void addPayment(Object info[], int fee, int change) {
         
         try{
         BufferedWriter writer = new BufferedWriter(new FileWriter(keepFile));

@@ -17,7 +17,7 @@ public class LoggerDAODerby implements LoggerDAO{
         keepFile = new File("logger.txt");
     }
     
-    @Override
+    //@requires log != null;
     public void addLog(Logger log) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(keepFile, true));

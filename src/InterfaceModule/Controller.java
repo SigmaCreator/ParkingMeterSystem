@@ -20,28 +20,40 @@ public class Controller extends Observable{
     private final Manager manager;
     private static Controller instance;
     
+    
     protected Controller(){
         manager = Manager.getInstance();
     }
     
+    /*@ pure @*/
     public static Controller getInstance(){
         if(instance == null)
             instance = new Controller();
         return instance;
     }
     
+    /*@ pure @*/
     public Object getParkingMeterList(){
-        return manager.getAllPartkingMeters();
+        return manager.getAllParkingMeters();
     }
     
+    
+    //@requires id.length() == 5;
+    //@requires filterType == 0 || filterType == 1;
+    //@ensures \result == manager.createReport(id, filterType);
     public String generateValueReport(String id, int filterType) {
         return (String) manager.createReport(id, filterType);
     }
     
+    //@requires filter==0 || filter==1;
+    //@requires filterType==0 || filterType==1;
+    //@ensures \result == manager.createReport(filter, filterType);
     public String generateGeneralReport(int filter, int filterType){
         return (String) manager.createReport(filter, filterType);
     }
     
+    //@requires newLogger != null;
+    //@ensures \result == "Log importado com sucesso.";
     public String importLogger(Object newLogger) throws InvalidLoggerException, IOException{
         String result = (String) manager.addLogger(newLogger);
         setChanged();
@@ -49,6 +61,8 @@ public class Controller extends Observable{
         return result;
     }
     
+    //@requires id.length() == 5;
+    //@ensures \result != null;
     public JFreeChart generateGraph(String id){
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         HashMap<String, Double> hash = (HashMap<String,Double>)manager.getGraphDataset(id);

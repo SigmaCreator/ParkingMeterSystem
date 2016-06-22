@@ -18,12 +18,20 @@ public class Time {
         this.minute = minute;
     }
     
+    /*@ pure @*/
     public int getMinute(){ return minute; }
     
+    /*@ pure @*/
     public int getHour(){ return hour; }
     
+    //@ensures \result == getHour()*60 + getMinute();
     public int getTimeInMinutes(){ return hour * 60 + minute; }
     
+    //@requires time != null;
+    //@ensures (\old(getMinute())+time.getMinute())/60 > 0 ==> getMinute() == (\old(getMinute())+time.getMinute())%60;
+    //@ensures \old(getMinute())/60 <=0 ==> getMinute() == \old(getMinute())+time.getMinute();
+    //@ensures (\old(getMinute())+time.getMinute())/60 > 0 ==> getHour() == \old(getHour())+\old(getMinute())/60 +time.getHour();
+    //@ensures \old(getMinute())/60 <=0 ==> getHour() == \old(getHour())+time.getHour();
     public void add(Time time){
         minute = minute + time.getMinute();
         int newHour = (minute / 60);
@@ -34,6 +42,10 @@ public class Time {
         hour = hour + time.getHour();
     }
     
+    //@requires time != null
+    //@ensures time.getMinute()/60 >0 ==> getHour() == \old(getHour())-time.getHour()-time.getMinute()/60;
+    //@ensures time.getMinute()/60 <= 0 ==> getHour() == \old(getHour())-time.getHour();
+    //@ensures time.getMinute()/60 >0 ==> getMinute() == \old(getMinute()) - (time.getMinute() %60);
     public void sub(Time time){
         hour = hour - time.getHour();
         int newHour = (time.getMinute() / 60) ;
@@ -43,7 +55,7 @@ public class Time {
         }
     }
     
-    @Override
+    /*@ pure @*/
     public String toString(){
         StringBuffer time = new StringBuffer();
         

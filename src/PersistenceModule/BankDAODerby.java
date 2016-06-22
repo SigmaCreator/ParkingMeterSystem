@@ -15,7 +15,8 @@ public class BankDAODerby implements BankDAO { //OK
     //@ensures keepFile == new File("bank.txt")
     public BankDAODerby(){ keepFile = new File("bank.txt"); }
 
-    @Override
+    
+    //@requires bank != null;
     public void update(Bank bank) {
         String arquivoTmp = "ARQUIVO-tmp";
         try{
@@ -29,9 +30,9 @@ public class BankDAODerby implements BankDAO { //OK
 
         keepFile.delete();
         new File(arquivoTmp).renameTo(keepFile);
-    }catch(IOException e){
+        }catch(IOException e){
         
-    }
+        }
     }
     
     

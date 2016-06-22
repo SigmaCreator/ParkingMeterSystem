@@ -15,6 +15,7 @@ public class TicketDAODerby implements TicketDAO { //OK!
         keepFile = new File("tickets.txt");
     }
 
+    //@requires t != null;
     public void add(Ticket t) {
         try{
             BufferedWriter writer = new BufferedWriter(new FileWriter(keepFile));
@@ -26,9 +27,5 @@ public class TicketDAODerby implements TicketDAO { //OK!
         }catch(IOException e){
         
         }
-    }
-
-    public Ticket[] getAll(String label) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

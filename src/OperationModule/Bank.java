@@ -30,7 +30,8 @@ public class Bank { // OK
         bankDAO = new BankDAODerby();
     }
     
-    //@ensures \result == result
+    //@requires money != null;
+    //@ensures \result != null;
     public Object[] deposit(Object[] money, int change) throws InexistentCoinValueException {
         
         Object[] result = new Object[3];
@@ -65,8 +66,8 @@ public class Bank { // OK
         
     } // Depósito com dinheiro
     
-    //@ensures aux >= 0 || aux <= change
-    //@ensures \result = debit
+    
+    //@ensures \result != null;
     private Money[] debit(int change) throws InexistentCoinValueException{
         int aux = change;
         Money[] debit = new Money[5];
@@ -124,7 +125,7 @@ public class Bank { // OK
         return total;
     } // Retorna todo dinheiro arrecadado
     
-    //@ensures \result == s.toString()
+    /*@ pure @*/
     public String print(){
         StringBuilder s = new StringBuilder();
         

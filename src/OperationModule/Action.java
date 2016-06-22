@@ -17,6 +17,8 @@ public class Action {
         information = Information.getInstance();
     }
 
+    //@requires coins != null;
+    //@ensures \result == payment.getpaidValue(coins, change);
     public int getPaidValue(Object coins, int change){
         return payment.getPaidValue(coins, change);
     }

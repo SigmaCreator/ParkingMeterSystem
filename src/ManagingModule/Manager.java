@@ -20,53 +20,35 @@ public class Manager {
             instance = new Manager();
         return instance;
     }
-    /*
-    //@requires info[0] == 1
-    //
-    //@ensures \result == loggerBank.addLogger((File)info[1])
-    //@also
-    //@requires info[0] == 2
-    //
-    //@ensures \result == reportCreator.createReport((int)info[1], (int)info[2])
-    //@also
-    //@requires info[0] == 3
-    //
-    //@ensures \result == reportCreator.createReport((int[])info[1], (int)info[2])
-    public Object defineAction(Object[] info) throws InvalidLoggerException, IOException{
-        //info[0] = action;
-        //info[1] = File newLogger | int filter | int[] id
-        //info[2] = int filterType
-        Object o;
-        switch((int)info[0]){
-            case 1: o = loggerBank.addLogger((File)info[1]);
-                    break;
-            case 2: o = reportCreator.createReport((int)info[1], (int)info[2]);
-                    break;
-            case 3: o = reportCreator.createReport((int[])info[1], (int)info[2]);
-                    break;
-            //case 4: gera grafico de valor arrecadado por ano mes a mes
-            default: o = null;
-        }
-        return o;
-    }  
-    */
+    
+    //@requires newLogger != null;
+    //@ensures \result == "Log importado com sucesso.";
     public Object addLogger(Object newLogger) throws InvalidLoggerException, IOException{
         return loggerBank.addLogger((File)newLogger);
     }
     
+    //@requires filter==0 || filter==1;
+    //@requires filterType==0 || filterType==1;
+    //@ensures \result == reportCreator.createReport(filter, filterType);
     public Object createReport(int filter, int filterType){
         return reportCreator.createReport(filter, filterType);
     }
     
+    //@requires id.length() == 5;
+    //@requires filterType == 0 || filterType == 1;
+    //@ensures \result == reportCreator.createReport(id, filterType);
     public Object createReport(String id, int filterType){
         return reportCreator.createReport(id, filterType);
     }
     
+    //@requires id.length() == 5;
+    //@ensures \result == graphGenerator.generateDataset(id);
     public Object getGraphDataset(String id){
         return graphGenerator.generateDataset(id);
     }
     
-    public Object getAllPartkingMeters(){
+    /*@ pure @*/
+    public Object getAllParkingMeters(){
         return loggerBank.getParkingMeterList();
     }
 }

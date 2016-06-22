@@ -29,9 +29,8 @@ public class LoggerBank {
         return bank.get(id);
     }
     
-    //@requires idString.length()== 5
-    //
-    //@ensures bank.containsKey(id) == true
+    //@requires File !=null
+    //@ensures \result.equalsIgnoreCase("Log importado com sucesso.");
     public String addLogger(File file) throws InvalidLoggerException, IOException{
         BufferedReader br = new BufferedReader(new FileReader(file));
         StringBuffer sb = new StringBuffer();
@@ -54,6 +53,7 @@ public class LoggerBank {
         return sb.toString();
     }
     
+    /*@ pure @*/
     public Object getParkingMeterList(){
         return bank.keySet();
     }

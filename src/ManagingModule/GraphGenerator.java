@@ -15,12 +15,15 @@ public class GraphGenerator {
         loggerBank = LoggerBank.getInstance();
     }
     
+    /*@ pure @*/
     public static GraphGenerator getInstance(){
         if( instance == null )
             instance = new GraphGenerator();
         return instance;
     }
     
+    //@requires id.length() == 5;
+    //@ensures \result != null;
     public HashMap<String, Double> generateDataset(String id){
         String [] log = loggerBank.getLogger(id).split("\n");
         HashMap<String, Double> values = new HashMap<>();

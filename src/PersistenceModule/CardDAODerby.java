@@ -15,8 +15,8 @@ public class CardDAODerby implements CardDAO { //OK
         keepFile = new File("cards.txt");
     }
 
-    @Override
-    public void addCard(Card c, double fee){
+    //@requires c != null;
+    public void addCard(Card c, int fee){
 
         try{
         BufferedWriter writer = new BufferedWriter(new FileWriter(keepFile));

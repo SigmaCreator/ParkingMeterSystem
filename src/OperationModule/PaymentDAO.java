@@ -2,5 +2,5 @@
 package OperationModule;
 
 public interface PaymentDAO {
-    /*@ pure @*/ void addPayment(Object[] info, double fee, double change);
+    /*@ pure @*/ void addPayment(Object[] info, int fee, int change);
 }

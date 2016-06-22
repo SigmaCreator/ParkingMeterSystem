@@ -16,15 +16,16 @@ class Payment { //OK
     Card card;
     PaymentDAO paymentDAO;
  
-    //@ensures paymentDAO == new PaymentDAODerby()
-    //@ensures bank == new Bank() 
-    //@ensures card == null
+    //@ensures paymentDAO == new PaymentDAODerby();
+    //@ensures bank == new Bank() ;
+    //@ensures card == null;
     public Payment() throws InexistentCoinValueException{ 
         paymentDAO = new PaymentDAODerby();
         bank = new Bank(); 
         card = null;
     }
     
+    //@requires coins != null;
     public int getPaidValue(Object coins, int change){
         int result=0;
         for(Money c: (Money[])coins)
@@ -34,23 +35,21 @@ class Payment { //OK
     
     
     
-    //@requires info[0] == 1
+    //@requires info[0] == 1;
     //
-    //@ensures bank.getFunds == \old(bank.getFundas) + 
-    //@ensures \result == result
+    //@ensures bank.getFunds() == \old(bank.getFunds) + getPaidValue(info[2], change);
+    
     //@also
-    //@requires info[0] == 2
+    //@requires info[0] == 2;
     //
-    //@ensures card == new Card((int[]) info[2] , (int) info[3])
-    //@ensures card.getFunds == \old(card.getFunds) - fee
-    //@ensures bank.getCardFunds == \old(bank.getCardFunds) + fee
-    //@ensures \result = result
+    //@ensures card == new Card((int[]) info[2] , (int) info[3]);
+    //@ensures card.getFunds == \old(card.getFunds) - fee;
+    //@ensures bank.getCardFunds == \old(bank.getCardFunds) + fee;
     //@also
-    //@ensures signals (NonExistentActionException e) info[0] != 1 && info[0] != 2
+    //@ensures signals (NonExistentActionException e) info[0] != 1 && info[0] != 2;
     public Object defineAction(Object[] info, int fee, int change) throws InvalidSerialNumberException, NotEnoughCardFundsException, NegativeCardFundsException {
         // 1 - pay with money
-        // 2 - pay with card 
-        // 3 - check funds
+        // 2 - pay with card
         
         Object result = new Object();
         

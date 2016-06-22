@@ -9,6 +9,8 @@ public class Report { // OK
         report = new StringBuilder();
     }
     
+    //@requires logger != null;
+    //@ensures \old(getReport().length) < getReport();
     public void addLog(String logger){
         report.append(logger);
         report.append("\n");

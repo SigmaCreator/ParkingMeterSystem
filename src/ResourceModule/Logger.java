@@ -8,8 +8,8 @@ public class Logger {
     
     public Logger(String ini){ log = new StringBuffer(ini); }
 
+    //@requires error != null;
     public void update(Exception error) {
-        System.out.println("Aloha");
         calendar = Calendar.getInstance();
         log.append(System.lineSeparator());
         log.append("Log_Date:");
@@ -33,6 +33,7 @@ public class Logger {
         
     }
 
+    //@requires newLog != null;
     public void update(String newLog) {
         
         calendar = Calendar.getInstance();
@@ -53,6 +54,7 @@ public class Logger {
         
     }
     
+    /*@ pure @*/
     public String toString(){
         return log.toString();
     }

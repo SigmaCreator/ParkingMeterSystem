@@ -18,6 +18,9 @@ public class ReportCreator {
         return instance;
     }
     
+    //@requires filter == 0 || filter == 1;
+    //@requires filterType == 0 || filterType == 1;
+    //@ensures \result == report.getReport();
     public String createReport(int filter, int filterType){
         Report report = new Report();
         String[] log = loggerBank.toString().split("\n");
@@ -33,6 +36,9 @@ public class ReportCreator {
         return report.getReport();
     }
     
+    //@requires id.length() == 5;
+    //@requires filterType == 0 || filterType == 1;
+    //@ensures \result == report.getReport();
     public String createReport(String id, int filterType){ //total valor arrecadado agrupados por mês ou ano
         Report report = new Report();
         String[] log = loggerBank.getLogger(id).split("\n");

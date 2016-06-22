@@ -3,7 +3,6 @@ package OperationModule;
 import PersistenceModule.LoggerDAODerby;
 import ResourceModule.Logger;
 import ExceptionModule.InvalidIDException;
-import java.util.Arrays;
 
 public class ParkingMeter {
     private Integer[]  id;
@@ -63,9 +62,9 @@ public class ParkingMeter {
         return logger;
     }
 
-    //@ensures signals (NullPointerException e) info == null
+    //@ensures signals (NullPointerException e) info == null;
     //@ensures signals (NullPointerException e) 
-    //
+    
     //@ensures result[0] == action.getPayment().defineAction(info,fee,change)
     //@ensures result[1] == action.createTicket(totalIncrementTime,ticketSerialNumber,id,address)
     //@ensures \result == result
